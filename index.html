@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biosfera Rental Bike - Alquiler de Bicicletas en Lanzarote</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-yellow: #FFD700;
+            --primary-blue: #0077BE;
+            --light-blue: #E6F2FF;
+            --dark-blue: #005A8C;
+            --white: #FFFFFF;
+            --gray: #333333;
+            --light-gray: #F5F5F5;
+            --medium-gray: #E0E0E0;
+            --shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo h1 {
+            color: var(--primary-blue);
+            font-size: clamp(1.3rem, 4vw, 1.8rem);
+            margin-left: 10px;
+        }
+
+        .logo span {
+            color: var(--primary-yellow);
+        }
+
+        nav {
+            transition: var(--transition);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: clamp(15px, 2.5vw, 25px);
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--gray);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            white-space: nowrap;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-blue);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-yellow);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .language-selector {
+            display: flex;
+            gap: 8px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1px solid var(--primary-blue);
+            color: var(--primary-blue);
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .lang-btn.active {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .lang-btn:hover:not(.active) {
+            background-color: var(--light-blue);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-blue);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 119, 190, 0.8), rgba(0, 119, 190, 0.8)), url('https://images.unsplash.com/photo-1511994298241-608e28f14fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--white);
+            text-align: center;
+            padding: clamp(80px, 15vw, 120px) 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-yellow);
+            color: var(--gray);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            flex: 0 1 auto;
+        }
+
+        .btn:hover {
+            background-color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--white);
+            color: var(--primary-blue);
+        }
+
+        /* About Section */
+        .about {
+            padding: clamp(50px, 10vw, 80px) 0;
+            background-color: var(--white);
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(30px, 5vw, 50px);
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-content h2 {
+            color: var(--primary-blue);
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            background-color: var(--light-blue);
+            color: var(--primary-blue);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            font-size: 1.2rem;
+        }
+
+        /* Services Section */
+        .services {
+            padding: clamp(50px, 10vw, 80px) 0;
+            background-color: var(--light-gray);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: clamp(30px, 5vw, 50px);
+        }
+
+        .section-title h2 {
+            color: var(--primary-blue);
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: clamp(20px, 3vw, 30px);
+        }
+
+        .service-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-icon {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .service-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
+        }
+
+        .service-price {
+            color: var(--primary-yellow);
+            font-weight: bold;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            margin: 10px 0;
+        }
+
+        /* Bikes Section */
+        .bikes {
+            padding: clamp(50px, 10vw, 80px) 0;
+            background-color: var(--white);
+        }
+
+        .bikes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: clamp(20px, 3vw, 30px);
+        }
+
+        .bike-card {
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bike-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .bike-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .bike-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .bike-card:hover .bike-image img {
+            transform: scale(1.1);
+        }
+
+        .bike-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bike-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
+        }
+
+        .bike-features {
+            list-style: none;
+            margin: 15px 0;
+            flex-grow: 1;
+        }
+
+        .bike-features li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .bike-features li i {
+            color: var(--primary-yellow);
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: clamp(50px, 10vw, 80px) 0;
+            background-color: var(--light-blue);
+        }
+
+        .testimonials-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial-slider {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .testimonial-slide {
+            min-width: 100%;
+            padding: 0 10px;
+        }
+
+        .testimonial-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: clamp(20px, 4vw, 30px);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .testimonial-text::before,
+        .testimonial-text::after {
+            content: '"';
+            font-size: 2rem;
+            color: var(--primary-yellow);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            color: var(--primary-blue);
+            margin-bottom: 5px;
+        }
+
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--medium-gray);
+            margin: 0 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .slider-dot.active {
+            background-color: var(--primary-blue);
+        }
+
+        /* Location Section */
+        .location {
+            padding: clamp(50px, 10vw, 80px) 0;
+            background-color: var(--white);
+        }
+
+        .location-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(30px, 4vw, 40px);
+            align-items: center;
+        }
+
+        .location-info h3 {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            font-size: clamp(1.3rem, 3vw, 1.5rem);
+        }
+
+        .location-info p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .location-info i {
+            color: var(--primary-yellow);
+            margin-right: 10px;
+            font-size: 1.2rem;
+            min-width: 20px;
+        }
+
+        .map {
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: clamp(50px, 10vw, 80px) 0;
+            background-color: var(--light-gray);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+            background-color: var(--white);
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background-color: var(--light-blue);
+        }
+
+        .faq-question i {
+            transition: var(--transition);
+        }
+
+        .faq-answer {
+            background-color: var(--white);
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s, padding 0.3s;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: clamp(50px, 10vw, 80px) 0;
+            background-color: var(--light-blue);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(30px, 5vw, 50px);
+        }
+
+        .contact-info h3 {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            font-size: clamp(1.3rem, 3vw, 1.5rem);
+        }
+
+        .contact-details {
+            margin-bottom: 30px;
+        }
+
+        .contact-details p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .contact-details i {
+            color: var(--primary-yellow);
+            margin-right: 15px;
+            font-size: 1.2rem;
+            min-width: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--primary-yellow);
+            color: var(--gray);
+            transform: translateY(-3px);
+        }
+
+        .contact-form {
+            background-color: var(--white);
+            padding: clamp(20px, 4vw, 30px);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-blue);
+            outline: none;
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: clamp(30px, 6vw, 50px) 0 20px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+            gap: clamp(20px, 3vw, 30px);
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: var(--primary-yellow);
+            margin-bottom: 20px;
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+        }
+
+        .footer-column p,
+        .footer-column a {
+            color: var(--white);
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .footer-column a:hover {
+            color: var(--primary-yellow);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links i {
+            margin-right: 10px;
+            color: var(--primary-yellow);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+
+            .about-container,
+            .location-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                order: -1;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                box-shadow: var(--shadow);
+                padding: 20px;
+                display: none;
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .map {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                width: 95%;
+            }
+
+            .header-container {
+                padding: 10px 0;
+            }
+
+            .hero {
+                padding: 60px 0;
+                min-height: 70vh;
+            }
+
+            .testimonial-author {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .language-selector {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .lang-btn {
+                padding: 3px 8px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <h1>Biosfera <span>Rental Bike</span></h1>
+            </div>
+
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="#home" data-lang="es">Inicio</a><a href="#home" data-lang="en"
+                            style="display: none;">Home</a></li>
+                    <li><a href="#about" data-lang="es">Nosotros</a><a href="#about" data-lang="en"
+                            style="display: none;">About</a></li>
+                    <li><a href="#services" data-lang="es">Servicios</a><a href="#services" data-lang="en"
+                            style="display: none;">Services</a></li>
+                    <li><a href="#bikes" data-lang="es">Bicicletas</a><a href="#bikes" data-lang="en"
+                            style="display: none;">Bikes</a></li>
+                    <li><a href="#testimonials" data-lang="es">Opiniones</a><a href="#testimonials" data-lang="en"
+                            style="display: none;">Reviews</a></li>
+                    <li><a href="#location" data-lang="es">Ubicación</a><a href="#location" data-lang="en"
+                            style="display: none;">Location</a></li>
+                    <li><a href="#contact" data-lang="es">Contacto</a><a href="#contact" data-lang="en"
+                            style="display: none;">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="language-selector">
+                <button class="lang-btn active" id="lang-es">ES</button>
+                <button class="lang-btn" id="lang-en">EN</button>
+            </div>
+
+            <div class="mobile-menu" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h2 data-lang="es">Alquiler de Bicicletas en Lanzarote</h2>
+                <h2 data-lang="en" style="display: none;">Bike Rental in Lanzarote</h2>
+                <p data-lang="es">Disfruta de Lanzarote de forma ecológica y saludable con nuestras bicicletas y
+                    scooters de movilidad. Recogida y entrega gratuita en toda la isla.</p>
+                <p data-lang="en" style="display: none;">Enjoy Lanzarote in an eco-friendly and healthy way with our
+                    bikes and mobility scooters. Free pick-up and delivery across the island.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn" data-lang="es">Reserva Ahora</a>
+                    <a href="#contact" class="btn" data-lang="en" style="display: none;">Book Now</a>
+                    <a href="#bikes" class="btn btn-secondary" data-lang="es">Ver Bicicletas</a>
+                    <a href="#bikes" class="btn btn-secondary" data-lang="en" style="display: none;">View Bikes</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-container">
+                <div class="about-content">
+                    <h2 data-lang="es">Sobre Biosfera Rental Bike</h2>
+                    <h2 data-lang="en" style="display: none;">About Biosfera Rental Bike</h2>
+                    <p data-lang="es">Con más de 10 años de experiencia, Biosfera Rental Bike es la opción preferida por
+                        turistas y residentes para explorar Lanzarote de manera sostenible.</p>
+                    <p data-lang="en" style="display: none;">With over 10 years of experience, Biosfera Rental Bike is
+                        the preferred choice for tourists and residents to explore Lanzarote sustainably.</p>
+
+                    <div class="features">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div>
+                                <h4 data-lang="es">Equipos Seguros</h4>
+                                <h4 data-lang="en" style="display: none;">Safe Equipment</h4>
+                                <p data-lang="es">Todos nuestros vehículos pasan rigurosas revisiones de seguridad.</p>
+                                <p data-lang="en" style="display: none;">All our vehicles undergo rigorous safety
+                                    checks.</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <div>
+                                <h4 data-lang="es">Asistencia 24/7</h4>
+                                <h4 data-lang="en" style="display: none;">24/7 Assistance</h4>
+                                <p data-lang="es">Servicio de asistencia en carretera gratuito para cualquier
+                                    incidencia.</p>
+                                <p data-lang="en" style="display: none;">Free roadside assistance service for any
+                                    incident.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Biosfera Rental Bike">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-lang="es">Nuestros Servicios</h2>
+                <h2 data-lang="en" style="display: none;">Our Services</h2>
+                <p data-lang="es">Ofrecemos una amplia gama de opciones para que disfrutes de tu estancia en Lanzarote
+                </p>
+                <p data-lang="en" style="display: none;">We offer a wide range of options for you to enjoy your stay in
+                    Lanzarote</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-bicycle"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 data-lang="es">Bicicletas Urbanas</h3>
+                        <h3 data-lang="en" style="display: none;">City Bikes</h3>
+                        <p data-lang="es">Bicicletas cómodas y seguras para explorar la ciudad y sus alrededores.
+                            Perfectas para desplazamientos diarios y paseos turísticos.</p>
+                        <p data-lang="en" style="display: none;">Comfortable and safe bikes to explore the city and its
+                            surroundings. Perfect for daily commuting and tourist rides.</p>
+                        <div class="service-price" data-lang="es">Desde 12€/día</div>
+                        <div class="service-price" data-lang="en" style="display: none;">From €12/day</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-wheelchair"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 data-lang="es">Scooters de Movilidad</h3>
+                        <h3 data-lang="en" style="display: none;">Mobility Scooters</h3>
+                        <p data-lang="es">Scooters eléctricos para facilitar tu movilidad por la isla. Ideales para
+                            personas con movilidad reducida.</p>
+                        <p data-lang="en" style="display: none;">Electric scooters to facilitate your mobility around
+                            the island. Ideal for people with reduced mobility.</p>
+                        <div class="service-price" data-lang="es">Desde 25€/día</div>
+                        <div class="service-price" data-lang="en" style="display: none;">From €25/day</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 data-lang="es">Recogida y Entrega Gratuita</h3>
+                        <h3 data-lang="en" style="display: none;">Free Pick Up & Delivery</h3>
+                        <p data-lang="es">Te llevamos y recogemos el vehículo donde nos indiques, sin coste adicional.
+                            Servicio disponible en toda Lanzarote.</p>
+                        <p data-lang="en" style="display: none;">We deliver and pick up the vehicle wherever you
+                            indicate, at no additional cost. Service available throughout Lanzarote.</p>
+                        <div class="service-price" data-lang="es">Gratuito</div>
+                        <div class="service-price" data-lang="en" style="display: none;">Free</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 data-lang="es">Asistencia en Carretera</h3>
+                        <h3 data-lang="en" style="display: none;">Roadside Assistance</h3>
+                        <p data-lang="es">Servicio de asistencia gratuito en carretera para cualquier problema técnico.
+                            Disponible 24/7 durante tu alquiler.</p>
+                        <p data-lang="en" style="display: none;">Free roadside assistance service for any technical
+                            problem. Available 24/7 during your rental.</p>
+                        <div class="service-price" data-lang="es">Incluido</div>
+                        <div class="service-price" data-lang="en" style="display: none;">Included</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 data-lang="es">Rutas Guiadas</h3>
+                        <h3 data-lang="en" style="display: none;">Guided Routes</h3>
+                        <p data-lang="es">Descubre los mejores rincones de Lanzarote con nuestras rutas guiadas. Para
+                            todos los niveles de experiencia.</p>
+                        <p data-lang="en" style="display: none;">Discover the best corners of Lanzarote with our guided
+                            routes. For all experience levels.</p>
+                        <div class="service-price" data-lang="es">Desde 30€/persona</div>
+                        <div class="service-price" data-lang="en" style="display: none;">From €30/person</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 data-lang="es">Accesorios y Equipamiento</h3>
+                        <h3 data-lang="en" style="display: none;">Accessories & Equipment</h3>
+                        <p data-lang="es">Cascos, candados, sillas para niños y otros accesorios disponibles para hacer
+                            tu experiencia más segura y cómoda.</p>
+                        <p data-lang="en" style="display: none;">Helmets, locks, child seats and other accessories
+                            available to make your experience safer and more comfortable.</p>
+                        <div class="service-price" data-lang="es">Desde 3€/día</div>
+                        <div class="service-price" data-lang="en" style="display: none;">From €3/day</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bikes Section -->
+    <section class="bikes" id="bikes">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-lang="es">Nuestras Bicicletas</h2>
+                <h2 data-lang="en" style="display: none;">Our Bikes</h2>
+                <p data-lang="es">Elige la bicicleta perfecta para tu aventura en Lanzarote</p>
+                <p data-lang="en" style="display: none;">Choose the perfect bike for your adventure in Lanzarote</p>
+            </div>
+            <div class="bikes-grid">
+                <div class="bike-card">
+                    <div class="bike-image">
+                        <img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Bicicleta Híbrida">
+                    </div>
+                    <div class="bike-content">
+                        <h3 data-lang="es">Bicicleta Híbrida</h3>
+                        <h3 data-lang="en" style="display: none;">Hybrid Bike</h3>
+                        <p data-lang="es">Perfecta para carretera y caminos de tierra. Versátil y cómoda.</p>
+                        <p data-lang="en" style="display: none;">Perfect for road and dirt paths. Versatile and
+                            comfortable.</p>
+                        <ul class="bike-features">
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Cuadro de aluminio</span><span
+                                    data-lang="en" style="display: none;">Aluminum frame</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Cambios 21 velocidades</span><span
+                                    data-lang="en" style="display: none;">21-speed gears</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Suspensión delantera</span><span
+                                    data-lang="en" style="display: none;">Front suspension</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Frenos de disco</span><span
+                                    data-lang="en" style="display: none;">Disc brakes</span></li>
+                        </ul>
+                        <div class="service-price" data-lang="es">18€/día</div>
+                        <div class="service-price" data-lang="en" style="display: none;">€18/day</div>
+                        <a href="#contact" class="btn" data-lang="es">Reservar</a>
+                        <a href="#contact" class="btn" data-lang="en" style="display: none;">Book</a>
+                    </div>
+                </div>
+                <div class="bike-card">
+                    <div class="bike-image">
+                        <img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Bicicleta Eléctrica">
+                    </div>
+                    <div class="bike-content">
+                        <h3 data-lang="es">Bicicleta Eléctrica</h3>
+                        <h3 data-lang="en" style="display: none;">Electric Bike</h3>
+                        <p data-lang="es">Recorre más distancia con menos esfuerzo. Perfecta para colinas.</p>
+                        <p data-lang="en" style="display: none;">Cover more distance with less effort. Perfect for
+                            hills.</p>
+                        <ul class="bike-features">
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Motor 250W</span><span data-lang="en"
+                                    style="display: none;">250W motor</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Autonomía 60km</span><span
+                                    data-lang="en" style="display: none;">60km range</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Pantalla LCD</span><span
+                                    data-lang="en" style="display: none;">LCD display</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Carga rápida</span><span
+                                    data-lang="en" style="display: none;">Fast charging</span></li>
+                        </ul>
+                        <div class="service-price" data-lang="es">25€/día</div>
+                        <div class="service-price" data-lang="en" style="display: none;">€25/day</div>
+                        <a href="#contact" class="btn" data-lang="es">Reservar</a>
+                        <a href="#contact" class="btn" data-lang="en" style="display: none;">Book</a>
+                    </div>
+                </div>
+                <div class="bike-card">
+                    <div class="bike-image">
+                        <img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Tándem">
+                    </div>
+                    <div class="bike-content">
+                        <h3 data-lang="es">Bicicleta Tándem</h3>
+                        <h3 data-lang="en" style="display: none;">Tandem Bike</h3>
+                        <p data-lang="es">Disfruta de la experiencia de pedalear en compañía.</p>
+                        <p data-lang="en" style="display: none;">Enjoy the experience of pedaling together.</p>
+                        <ul class="bike-features">
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Para 2 personas</span><span
+                                    data-lang="en" style="display: none;">For 2 people</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Cuadro reforzado</span><span
+                                    data-lang="en" style="display: none;">Reinforced frame</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Frenos dobles</span><span
+                                    data-lang="en" style="display: none;">Double brakes</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Asientos ajustables</span><span
+                                    data-lang="en" style="display: none;">Adjustable seats</span></li>
+                        </ul>
+                        <div class="service-price" data-lang="es">30€/día</div>
+                        <div class="service-price" data-lang="en" style="display: none;">€30/day</div>
+                        <a href="#contact" class="btn" data-lang="es">Reservar</a>
+                        <a href="#contact" class="btn" data-lang="en" style="display: none;">Book</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="location" id="location">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-lang="es">Nuestra Ubicación</h2>
+                <h2 data-lang="en" style="display: none;">Our Location</h2>
+            </div>
+            <div class="location-container">
+                <div class="location-info">
+                    <h3 data-lang="es">Encuéntranos en Puerto del Carmen</h3>
+                    <h3 data-lang="en" style="display: none;">Find us in Puerto del Carmen</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> <strong data-lang="es">Dirección:</strong><strong
+                            data-lang="en" style="display: none;">Address:</strong> Calle Gramillo, C. C Matagorda Local
+                        66 y 79, 35519 Tías, Las Palmas</p>
+                    <p><i class="far fa-clock"></i> <strong data-lang="es">Horario:</strong><strong data-lang="en"
+                            style="display: none;">Opening Hours:</strong> 9:00 - 17:00 (todos los días / every day)</p>
+                    <p><i class="fas fa-phone-alt"></i> <strong data-lang="es">Teléfono:</strong><strong data-lang="en"
+                            style="display: none;">Phone:</strong> +34 928 123 456</p>
+
+                    <a href="https://maps.google.com" target="_blank" class="btn" style="margin-top: 20px;"
+                        data-lang="es">Cómo Llegar</a>
+                    <a href="https://maps.google.com" target="_blank" class="btn"
+                        style="margin-top: 20px; display: none;" data-lang="en">Get Directions</a>
+                </div>
+                <div class="map">
+                    <iframe src="https://www.google.com/maps?q=28.9321717,-13.7027614&z=17&hl=es&output=embed" width="100%" height="400"
+                        style="border:0;" allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-lang="es">Contacto</h2>
+                <h2 data-lang="en" style="display: none;">Contact</h2>
+                <p data-lang="es">¿Tienes alguna pregunta? No dudes en contactarnos</p>
+                <p data-lang="en" style="display: none;">Do you have any questions? Feel free to contact us</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3 data-lang="es">Información de Contacto</h3>
+                    <h3 data-lang="en" style="display: none;">Contact Information</h3>
+                    <div class="contact-details">
+                        <p><i class="fas fa-map-marker-alt"></i> Calle Gramillo, C. C Matagorda Local 66 y 79, 35519
+                            Tías, Las Palmas</p>
+                        <p><i class="fas fa-phone-alt"></i> +34 928 123 456</p>
+                        <p><i class="fab fa-whatsapp"></i> +34 612 345 678</p>
+                        <p><i class="far fa-envelope"></i> info@biosferarentalbike.com</p>
+                        <p><i class="far fa-clock"></i> <span data-lang="es">Lunes a Domingo: 9:00 - 17:00</span><span
+                                data-lang="en" style="display: none;">Monday to Sunday: 9:00 - 17:00</span></p>
+                    </div>
+
+                    <h3 data-lang="es" style="margin-top: 30px;">Síguenos en Redes Sociales</h3>
+                    <h3 data-lang="en" style="margin-top: 30px; display: none;">Follow us on Social Media</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3 data-lang="es">Solicita Información o Reserva</h3>
+                    <h3 data-lang="en" style="display: none;">Request Information or Book</h3>
+                    <form id="reservationForm">
+                        <div class="form-group">
+                            <label for="name" data-lang="es">Nombre completo</label>
+                            <label for="name" data-lang="en" style="display: none;">Full name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="service" data-lang="es">Servicio de interés</label>
+                            <label for="service" data-lang="en" style="display: none;">Service of interest</label>
+                            <select id="service" class="form-control" required>
+                                <option value="" data-lang="es">Selecciona un servicio</option>
+                                <option value="" data-lang="en" style="display: none;">Select a service</option>
+                                <option value="city-bike" data-lang="es">Bicicleta Urbana</option>
+                                <option value="city-bike" data-lang="en" style="display: none;">City Bike</option>
+                                <option value="hybrid-bike" data-lang="es">Bicicleta Híbrida</option>
+                                <option value="hybrid-bike" data-lang="en" style="display: none;">Hybrid Bike</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" data-lang="es">Mensaje</label>
+                            <label for="message" data-lang="en" style="display: none;">Message</label>
+                            <textarea id="message" class="form-control" placeholder data-lang="es=" Escribe tu mensaje
+                                aquí..." data-lang="en" style="display: none;"
+                                placeholder="Write your message here..."></textarea>
+                        </div>
+                        <button type="submit" class="btn" data-lang="es">Enviar Mensaje</button>
+                        <button type="submit" class="btn" data-lang="en" style="display: none;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>Biosfera Rental Bike</h3>
+                    <p data-lang="es">Tu mejor opción para alquilar bicicletas y scooters en Lanzarote.</p>
+                    <p data-lang="en" style="display: none;">Your best option for renting bikes and scooters in
+                        Lanzarote.</p>
+                </div>
+                <div class="footer-column">
+                    <h3 data-lang="es">Enlaces Rápidos</h3>
+                    <h3 data-lang="en" style="display: none;">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> <span data-lang="es">Inicio</span><span
+                                    data-lang="en" style="display: none;">Home</span></a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> <span
+                                    data-lang="es">Nosotros</span><span data-lang="en"
+                                    style="display: none;">About</span></a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> <span
+                                    data-lang="es">Contacto</span><span data-lang="en"
+                                    style="display: none;">Contact</span></a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 data-lang="es">Contáctanos</h3>
+                    <h3 data-lang="en" style="display: none;">Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Calle Gramillo, C. C Matagorda Local 66 y 79, 35519 Tías,
+                        Las Palmas</p>
+                    <p><i class="fas fa-phone-alt"></i> +34 928 123 456</p>
+                    <p><i class="far fa-envelope"></i> info@biosferarentalbike.com</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Biosfera Rental Bike. <span data-lang="es">Todos los derechos reservados.</span><span
+                        data-lang="en" style="display: none;">All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Funcionalidad de cambio de idioma
+        document.getElementById('lang-es').addEventListener('click', function () {
+            changeLanguage('es');
+        });
+
+        document.getElementById('lang-en').addEventListener('click', function () {
+            changeLanguage('en');
+        });
+
+        function changeLanguage(lang) {
+            // Actualizar botones de idioma
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(`lang-${lang}`).classList.add('active');
+
+            // Mostrar/ocultar elementos según el idioma
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                if (element.getAttribute('data-lang') === lang) {
+                    element.style.display = element.tagName === 'BUTTON' || element.tagName === 'A' || element.tagName === 'OPTION' ? 'inline-block' : 'block';
+                } else {
+                    element.style.display = 'none';
+                }
+            });
+        }
+
+        // Mobile Menu Toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mainNav = document.getElementById('main-nav');
+
+        mobileMenu.addEventListener('click', function () {
+            mainNav.classList.toggle('active');
+            this.querySelector('i').classList.toggle('fa-bars');
+            this.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function () {
+                mainNav.classList.remove('active');
+                mobileMenu.querySelector('i').classList.add('fa-bars');
+                mobileMenu.querySelector('i').classList.remove('fa-times');
+            });
+        });
+
+        // Form Submission
+        const form = document.getElementById('reservationForm');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert(document.querySelector('[data-lang="es"]').style.display !== 'none' ?
+                '¡Gracias por tu mensaje! Te contactaremos pronto.' :
+                'Thank you for your message! We will contact you soon.');
+            form.reset();
+        });
+
+        // Smooth Scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Responsive image loading
+        function loadResponsiveImages() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                // Add loading="lazy" for better performance
+                if (!img.getAttribute('loading')) {
+                    img.setAttribute('loading', 'lazy');
+                }
+            });
+        }
+
+        // Initialize on load
+        window.addEventListener('load', function () {
+            loadResponsiveImages();
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function () {
+            // Close mobile menu if window is resized to larger screen
+            if (window.innerWidth > 768) {
+                mainNav.classList.remove('active');
+                mobileMenu.querySelector('i').classList.add('fa-bars');
+                mobileMenu.querySelector('i').classList.remove('fa-times');
+            }
+        });
+    </script>
+</body>
+</html>
