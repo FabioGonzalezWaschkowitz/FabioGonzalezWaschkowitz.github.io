@@ -1190,6 +1190,91 @@
         </div>
     </section>
 
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-lang="es">Opiniones de Clientes</h2>
+                <h2 data-lang="en" style="display: none;">Customer Reviews</h2>
+                <p data-lang="es">Descubre lo que nuestros clientes dicen sobre nosotros</p>
+                <p data-lang="en" style="display: none;">Discover what our customers say about us</p>
+            </div>
+            <div class="testimonials-container">
+                <div class="testimonial-slider">
+                    <div class="testimonial-track">
+                        <div class="testimonial-slide">
+                            <div class="testimonial-card">
+                                <div class="testimonial-text">
+                                    <p data-lang="es">Excelente servicio. Las bicicletas están en perfecto estado y la
+                                        recogida en el hotel fue puntual. ¡Muy recomendable!</p>
+                                    <p data-lang="en" style="display: none;">Excellent service. The bikes are in perfect
+                                        condition and the hotel pickup was punctual. Highly recommended!</p>
+                                </div>
+                                <div class="testimonial-author">
+                                    <div class="author-avatar">
+                                        <img src="https://randomuser.me/api/portraits/women/43.jpg"
+                                            alt="María González">
+                                    </div>
+                                    <div class="author-info">
+                                        <h4>María González</h4>
+                                        <p data-lang="es">Barcelona, España</p>
+                                        <p data-lang="en" style="display: none;">Barcelona, Spain</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-slide">
+                            <div class="testimonial-card">
+                                <div class="testimonial-text">
+                                    <p data-lang="es">Alquilamos scooters para mis padres y quedaron encantados. El
+                                        servicio de asistencia es increíble, muy profesionales.</p>
+                                    <p data-lang="en" style="display: none;">We rented scooters for my parents and they
+                                        were delighted. The assistance service is amazing, very professional.</p>
+                                </div>
+                                <div class="testimonial-author">
+                                    <div class="author-avatar">
+                                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos Müller">
+                                    </div>
+                                    <div class="author-info">
+                                        <h4>Carlos Müller</h4>
+                                        <p data-lang="es">Berlín, Alemania</p>
+                                        <p data-lang="en" style="display: none;">Berlin, Germany</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-slide">
+                            <div class="testimonial-card">
+                                <div class="testimonial-text">
+                                    <p data-lang="es">Las bicicletas eléctricas son geniales para recorrer Lanzarote. La
+                                        batería dura todo el día y el servicio de recogida es muy conveniente.</p>
+                                    <p data-lang="en" style="display: none;">The electric bikes are great for exploring
+                                        Lanzarote. The battery lasts all day and the pickup service is very convenient.
+                                    </p>
+                                </div>
+                                <div class="testimonial-author">
+                                    <div class="author-avatar">
+                                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Sarah Johnson">
+                                    </div>
+                                    <div class="author-info">
+                                        <h4>Sarah Johnson</h4>
+                                        <p data-lang="es">Londres, Reino Unido</p>
+                                        <p data-lang="en" style="display: none;">London, UK</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-nav">
+                    <div class="slider-dot active"></div>
+                    <div class="slider-dot"></div>
+                    <div class="slider-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Location Section -->
     <section class="location" id="location">
         <div class="container">
@@ -1497,6 +1582,27 @@
                 mainNav.classList.remove('active');
                 mobileMenu.querySelector('i').classList.add('fa-bars');
                 mobileMenu.querySelector('i').classList.remove('fa-times');
+            });
+        });
+
+        // Testimonials Slider
+        const track = document.querySelector('.testimonial-track');
+        const slides = Array.from(track.children);
+        const dots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+
+        function updateSlider() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentSlide = index;
+                updateSlider();
             });
         });
 
