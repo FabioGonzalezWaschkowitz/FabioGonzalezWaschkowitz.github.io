@@ -776,7 +776,7 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.9rem;
         }
-        
+
         .header-right {
             display: flex;
             align-items: center;
@@ -877,6 +877,295 @@
             .lang-btn {
                 padding: 3px 8px;
                 font-size: 0.8rem;
+            }
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 25px;
+        }
+
+        /* Chat Icon */
+        .chat-icon {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 119, 190, 0.3);
+            z-index: 1000;
+            transition: var(--transition);
+            animation: pulse 2s infinite;
+        }
+
+        .chat-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(0, 119, 190, 0.4);
+        }
+
+        .chat-icon i {
+            color: var(--white);
+            font-size: 28px;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Chat Container */
+        .chat-container {
+            position: fixed;
+            bottom: 120px;
+            right: 30px;
+            width: 380px;
+            height: 650px;
+            background-color: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            display: none;
+            flex-direction: column;
+            z-index: 1001;
+            overflow: hidden;
+            border: 1px solid var(--medium-gray);
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            color: var(--white);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+        }
+
+        .chat-header h3 i {
+            color: var(--primary-yellow);
+        }
+
+        .close-chat {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-chat:hover {
+            color: var(--primary-yellow);
+            transform: rotate(90deg);
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: var(--light-gray);
+        }
+
+        .message {
+            margin-bottom: 15px;
+            padding: 12px 16px;
+            border-radius: 18px;
+            max-width: 85%;
+            word-wrap: break-word;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .user-message {
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            color: var(--white);
+            margin-left: auto;
+            border-bottom-right-radius: 5px;
+        }
+
+        .bot-message {
+            background-color: var(--white);
+            color: var(--gray);
+            border: 1px solid var(--medium-gray);
+            margin-right: auto;
+            border-bottom-left-radius: 5px;
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 12px 16px;
+            background-color: var(--white);
+            border-radius: 18px;
+            margin-bottom: 15px;
+            max-width: 85%;
+            border-bottom-left-radius: 5px;
+            border: 1px solid var(--medium-gray);
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .typing-dots span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--primary-blue);
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-dots span:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+
+        .typing-dots span:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+
+        @keyframes typing {
+
+            0%,
+            80%,
+            100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .chat-suggestions {
+            padding: 15px 20px;
+            background-color: var(--light-blue);
+            border-top: 1px solid var(--medium-gray);
+        }
+
+        .suggestions-title {
+            font-size: 0.9rem;
+            color: var(--dark-blue);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .suggestion {
+            display: inline-block;
+            background-color: var(--white);
+            color: var(--primary-blue);
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid var(--primary-blue);
+        }
+
+        .suggestion:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .chat-input-container {
+            display: flex;
+            padding: 15px;
+            background-color: var(--white);
+            border-top: 1px solid var(--medium-gray);
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 25px;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .chat-input:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 2px rgba(0, 119, 190, 0.1);
+        }
+
+        .send-button {
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            color: var(--white);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .send-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 119, 190, 0.3);
+        }
+
+        .send-button:disabled {
+            background: var(--medium-gray);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .chat-container {
+                width: 90vw;
+                right: 5vw;
+                height: 70vh;
+                bottom: 100px;
+            }
+
+            .chat-icon {
+                bottom: 20px;
+                right: 20px;
+                width: 60px;
+                height: 60px;
+            }
+
+            .chat-icon i {
+                font-size: 24px;
             }
         }
     </style>
@@ -1289,10 +1578,12 @@
                     <p>
                         <i class="fas fa-map-marker-alt"></i>
                         <strong data-lang="es">Dirección:</strong>
-                        <strong data-lang="en" style="display: none;">Address:</strong>&nbsp;Calle Gramillo, Matagorda Local 66 y 79, 35519 Tías, Las Palmas
+                        <strong data-lang="en" style="display: none;">Address:</strong>&nbsp;Calle Gramillo, Matagorda
+                        Local 66 y 79, 35519 Tías, Las Palmas
                     </p>
                     <p><i class="far fa-clock"></i> <strong data-lang="es">Horario:</strong><strong data-lang="en"
-                            style="display: none;">Opening Hours:</strong>&nbsp;9:00 - 17:00 (todos los días / every day)</p>
+                            style="display: none;">Opening Hours:</strong>&nbsp;9:00 - 17:00 (todos los días / every
+                        day)</p>
                     <p><i class="fas fa-phone-alt"></i> <strong data-lang="es">Teléfono:</strong><strong data-lang="en"
                             style="display: none;">Phone:</strong>&nbsp;+34 928 123 456</p>
 
@@ -1304,11 +1595,7 @@
                 <div class="map">
                     <iframe
                         src="https://www.google.com/maps?q=Calle+Gramillo,+C.+C+Matagorda+Local+66+y+79,+35519+Tías,+Las+Palmas&z=17&hl=es&output=embed"
-                        width="100%"
-                        height="400"
-                        style="border:0;"
-                        allowfullscreen=""
-                        loading="lazy">
+                        width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy">
                     </iframe>
                 </div>
             </div>
@@ -1412,64 +1699,84 @@
                 <p data-lang="en" style="display: none;">Do you have any questions? Feel free to contact us</p>
             </div>
             <div class="contact-container">
-                <div class="contact-info">
-                    <h3 data-lang="es">Información de Contacto</h3>
-                    <h3 data-lang="en" style="display: none;">Contact Information</h3>
-                    <div class="contact-details">
-                        <p><i class="fas fa-map-marker-alt"></i> Calle Gramillo, C. C Matagorda Local 66 y 79, 35519
-                            Tías, Las Palmas</p>
-                        <p><i class="fas fa-phone-alt"></i> +34 928 123 456</p>
-                        <p><i class="fab fa-whatsapp"></i> +34 612 345 678</p>
-                        <p><i class="far fa-envelope"></i> info@biosferarentalbike.com</p>
-                        <p><i class="far fa-clock"></i> <span data-lang="es">Lunes a Domingo: 9:00 - 17:00</span><span
-                                data-lang="en" style="display: none;">Monday to Sunday: 9:00 - 17:00</span></p>
-                    </div>
+    <div class="contact-info">
+        <h3 data-lang="es">Información de Contacto</h3>
+        <h3 data-lang="en" style="display: none;">Contact Information</h3>
+        <div class="contact-details">
+            <p><i class="fas fa-map-marker-alt"></i> Calle Gramillo, C. C Matagorda Local 66 y 79, 35519 Tías, Las Palmas</p>
+            <p><i class="fas fa-phone-alt"></i> +34 928 123 456</p>
+            <p><i class="fab fa-whatsapp"></i> +34 612 345 678</p>
+            <p><i class="far fa-envelope"></i> info@biosferarentalbike.com</p>
+            <p><i class="far fa-clock"></i> <span data-lang="es">Lunes a Domingo: 9:00 - 17:00</span><span data-lang="en" style="display: none;">Monday to Sunday: 9:00 - 17:00</span></p>
+        </div>
 
-                    <h3 data-lang="es" style="margin-top: 30px;">Síguenos en Redes Sociales</h3>
-                    <h3 data-lang="en" style="margin-top: 30px; display: none;">Follow us on Social Media</h3>
-                    <div class="social-icons">
-                        <a href="https://www.facebook.com/p/biosferabike_lanzarote-100069942483039/"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/biosferabike_lanzarote/"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                    </div>
+        <h3 data-lang="es" style="margin-top: 30px;">Síguenos en Redes Sociales</h3>
+        <h3 data-lang="en" style="margin-top: 30px; display: none;">Follow us on Social Media</h3>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/p/biosferabike_lanzarote-100069942483039/"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/biosferabike_lanzarote/"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+    </div>
+    <div class="contact-form">
+        <h3 data-lang="es">Solicita Información o Reserva</h3>
+        <h3 data-lang="en" style="display: none;">Request Information or Book</h3>
+        <form id="reservationForm">
+            <div class="form-group">
+                <label for="name" data-lang="es">Nombre completo</label>
+                <label for="name" data-lang="en" style="display: none;">Full name</label>
+                <input type="text" id="name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" class="form-control" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="phone" data-lang="es">Teléfono</label>
+                    <label for="phone" data-lang="en" style="display: none;">Phone</label>
+                    <input type="tel" id="phone" class="form-control" required>
                 </div>
-                <div class="contact-form">
-                    <h3 data-lang="es">Solicita Información o Reserva</h3>
-                    <h3 data-lang="en" style="display: none;">Request Information or Book</h3>
-                    <form id="reservationForm">
-                        <div class="form-group">
-                            <label for="name" data-lang="es">Nombre completo</label>
-                            <label for="name" data-lang="en" style="display: none;">Full name</label>
-                            <input type="text" id="name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="service" data-lang="es">Servicio de interés</label>
-                            <label for="service" data-lang="en" style="display: none;">Service of interest</label>
-                            <select id="service" class="form-control" required>
-                                <option value="" data-lang="es">Selecciona un servicio</option>
-                                <option value="" data-lang="en" style="display: none;">Select a service</option>
-                                <option value="city-bike" data-lang="es">Bicicleta Urbana</option>
-                                <option value="city-bike" data-lang="en" style="display: none;">City Bike</option>
-                                <option value="hybrid-bike" data-lang="es">Bicicleta Híbrida</option>
-                                <option value="hybrid-bike" data-lang="en" style="display: none;">Hybrid Bike</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="message" data-lang="es">Mensaje</label>
-                            <label for="message" data-lang="en" style="display: none;">Message</label>
-                            <textarea id="message" class="form-control" placeholder data-lang="es=" Escribe tu mensaje
-                                aquí..." data-lang="en" style="display: none;"
-                                placeholder="Write your message here..."></textarea>
-                        </div>
-                        <button type="submit" class="btn" data-lang="es">Enviar Mensaje</button>
-                        <button type="submit" class="btn" data-lang="en" style="display: none;">Send Message</button>
-                    </form>
+                <div class="form-group">
+                    <label for="dates" data-lang="es">Fechas de interés</label>
+                    <label for="dates" data-lang="en" style="display: none;">Dates of interest</label>
+                    <input type="text" id="dates" class="form-control" placeholder="Ej: 15-20 de mayo">
+                    <input type="text" id="dates-en" class="form-control" style="display: none;" placeholder="Ex: May 15-20">
                 </div>
             </div>
+            <div class="form-group">
+                <label for="service" data-lang="es">Servicio de interés</label>
+                <label for="service" data-lang="en" style="display: none;">Service of interest</label>
+                <select id="service" class="form-control" required>
+                    <option value="" data-lang="es">Selecciona un servicio</option>
+                    <option value="" data-lang="en" style="display: none;">Select a service</option>
+                    <option value="city-bike" data-lang="es">Bicicleta Urbana (12€/día)</option>
+                    <option value="city-bike" data-lang="en" style="display: none;">City Bike (€12/day)</option>
+                    <option value="hybrid-bike" data-lang="es">Bicicleta Híbrida (18€/día)</option>
+                    <option value="hybrid-bike" data-lang="en" style="display: none;">Hybrid Bike (€18/day)</option>
+                    <option value="electric-bike" data-lang="es">Bicicleta Eléctrica (25€/día)</option>
+                    <option value="electric-bike" data-lang="en" style="display: none;">Electric Bike (€25/day)</option>
+                    <option value="mobility-scooter" data-lang="es">Scooter de Movilidad (25€/día)</option>
+                    <option value="mobility-scooter" data-lang="en" style="display: none;">Mobility Scooter (€25/day)
+                    </option>
+                    <option value="tandem-bike" data-lang="es">Bicicleta Tándem (30€/día)</option>
+                    <option value="tandem-bike" data-lang="en" style="display: none;">Tandem Bike (€30/day)</option>
+                    <option value="other" data-lang="es">Otro servicio</option>
+                    <option value="other" data-lang="en" style="display: none;">Other service</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="message" data-lang="es">Mensaje adicional</label>
+                <label for="message" data-lang="en" style="display: none;">Additional message</label>
+                <textarea id="message" class="form-control" placeholder="Escribe tu mensaje aquí..."></textarea>
+                <textarea id="message-en" class="form-control" style="display: none;"
+                    placeholder="Write your message here..."></textarea>
+            </div>
+            <button type="submit" class="btn" data-lang="es">Enviar Mensaje</button>
+            <button type="submit" class="btn" data-lang="en" style="display: none;">Send Message</button>
+        </form>
+    </div>
+    </div>
         </div>
     </section>
 
@@ -1538,6 +1845,58 @@
             </div>
         </div>
     </footer>
+
+    <!-- Agente de IA -->
+    <!-- Icono del Chat -->
+    <div class="chat-icon" id="chatIcon">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <!-- Contenedor del Chat -->
+    <div class="chat-container" id="chatContainer">
+        <!-- Encabezado del Chat -->
+        <div class="chat-header">
+            <h3><i class="fas fa-bicycle"></i> Asistente Biosfera</h3>
+            <button class="close-chat" id="closeChat">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <!-- Mensajes del Chat -->
+        <div class="chat-messages" id="chatMessages">
+            <!-- Mensaje de bienvenida -->
+            <div class="message bot-message">
+                ¡Hola! Soy tu asistente virtual de Biosfera Rental Bike. ¿En qué puedo ayudarte hoy? 🚴‍♂️
+            </div>
+        </div>
+
+        <!-- Indicador de escritura -->
+        <div class="typing-indicator" id="typingIndicator">
+            <div class="typing-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <!-- Sugerencias de preguntas -->
+        <div class="chat-suggestions">
+            <div class="suggestions-title">Preguntas frecuentes:</div>
+            <div class="suggestion" data-question="¿Qué tipos de bicicletas tienen disponibles?">Tipos de bicicletas
+            </div>
+            <div class="suggestion" data-question="¿Cuáles son sus precios y tarifas?">Precios y tarifas</div>
+            <div class="suggestion" data-question="¿Ofrecen servicio de entrega y recogida?">Entrega y recogida</div>
+            <div class="suggestion" data-question="¿Cuál es su horario de atención?">Horario de atención</div>
+        </div>
+
+        <!-- Entrada de mensajes -->
+        <div class="chat-input-container">
+            <input type="text" class="chat-input" id="userInput" placeholder="Escribe tu mensaje...">
+            <button class="send-button" id="sendButton">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
 
     <script>
         // Funcionalidad de cambio de idioma
@@ -1677,6 +2036,218 @@
                 mobileMenu.querySelector('i').classList.remove('fa-times');
             }
         });
+
+        // Agente de IA - Chat Functionality
+        // Elementos del DOM
+        const chatIcon = document.getElementById('chatIcon');
+        const chatContainer = document.getElementById('chatContainer');
+        const closeChat = document.getElementById('closeChat');
+        const chatMessages = document.getElementById('chatMessages');
+        const userInput = document.getElementById('userInput');
+        const sendButton = document.getElementById('sendButton');
+        const typingIndicator = document.getElementById('typingIndicator');
+        const suggestions = document.querySelectorAll('.suggestion');
+
+        // Configuración de la API
+        const API_KEY = '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';
+        const API_URL = 'https://openrouter.ai/api/v1/chat/completions';
+
+        // Estado del chat
+        let isChatOpen = false;
+
+        // Contexto para el asistente de renta de bicicletas
+        const systemContext = `Eres "Biosfera Assistant", el asistente virtual oficial de BIOSFERA RENTAL BIKE, especializado en alquiler de bicicletas y scooters de movilidad en Lanzarote.
+
+INFORMACIÓN GENERAL DE LA EMPRESA:
+- Nombre: Biosfera Rental Bike
+- Ubicación: Calle Gramillo, C. C Matagorda Local 66 y 79, 35519 Tías, Las Palmas
+- Zona: Puerto del Carmen, Lanzarote, Islas Canarias
+- Horario: TODOS LOS DÍAS de 9:00 a 17:00 horas
+- Año de fundación: Más de 10 años de experiencia en el sector
+
+SERVICIOS PRINCIPALES:
+1. ALQUILER DE BICICLETAS:
+    • Bicicletas Urbanas Clásicas: 12€/día
+    - Cuadro de acero, 7 velocidades, asiento ergonómico
+    - Ideal para paseos por la ciudad y zonas costeras
+    
+    • Bicicletas Híbridas: 18€/día
+    - Cuadro de aluminio, 21 velocidades, suspensión delantera
+    - Perfectas para carretera y caminos de tierra
+
+    • Bicicletas Eléctricas: 25€/día
+    - Motor 250W, autonomía 60km, pantalla LCD
+    - Ideal para recorrer más distancia con menos esfuerzo
+
+    • Bicicletas Tándem: 30€/día
+    - Para 2 personas, cuadro reforzado, frenos dobles
+    - Experiencia de pedaleo en compañía
+
+2. SCOOTERS DE MOVILIDAD:
+    • Scooters Eléctricos: Desde 25€/día
+    - Para personas con movilidad reducida
+    - Fácil manejo, cómodos y seguros
+
+SERVICIOS INCLUIDOS GRATIS:
+✓ RECOGIDA Y ENTREGA GRATUITA en toda Lanzarote
+✓ ASISTENCIA EN CARRETERA 24/7 gratuita durante el alquiler
+✓ Casco de seguridad incluido
+✓ Candado de seguridad incluido
+✓ Mapa de rutas recomendadas
+
+REQUISITOS PARA ALQUILER:
+- Documentación: DNI, pasaporte o carnet de conducir en vigor
+- Edad: Mayor de 18 años
+- Depósito de seguridad: Variable según el tipo de vehículo (se devuelve al finalizar)
+- Tarjeta de crédito: Para el depósito de garantía
+
+PROMOCIONES Y DESCUENTOS:
+• Descuento del 15% en alquileres semanales (7 días o más)
+• Descuento del 20% para grupos de 5 personas o más
+• Ofertas especiales en temporada baja
+• Promociones para residentes de Lanzarote
+
+INFORMACIÓN DE CONTACTO:
+• Teléfono fijo: +34 928 123 456
+• WhatsApp: +34 612 345 678
+• Email: info@biosferarentalbike.com
+• Redes Sociales: @BiosferaRentalBike (Instagram, Facebook)
+
+ZONAS DE COBERTURA:
+- Entrega y recogida gratuita en: Puerto del Carmen, Matagorda, Tías, Arrecife, Costa Teguise, Playa Blanca, y toda el área metropolitana de Lanzarote.
+
+POLÍTICAS IMPORTANTES:
+• Cancelación gratuita hasta 24 horas antes del alquiler
+• Seguro básico incluido en todos los alquileres
+• Mantenimiento diario de todos los vehículos
+• Vehículos renovados anualmente
+• Opción de seguros adicionales disponibles
+
+RUTAS RECOMENDADAS EN LANZAROTE:
+1. Paseo marítimo de Puerto del Carmen
+2. Ruta de los volcanes del Timanfaya
+3. Costa de Teguise
+4. Paseo por Playa Blanca
+5. Ruta urbana de Arrecife
+
+INSTRUCCIONES DE RESPUESTA:
+- Responde de manera AMABLE, PROFESIONAL y EN ESPAÑOL
+- Sé CONCISO pero INFORMATIVO
+- Destaca siempre los servicios GRATUITOS (recogida y asistencia)
+- Menciona que estamos en PUERTO DEL CARMEN, LANZAROTE
+- Para preguntas específicas o reservas, deriva al teléfono/WhatsApp
+- Usa emojis moderadamente para hacer la conversación más amigable 🚲✨
+- Si no sabes algo específico, sugiere contactar por teléfono: +34 928 123 456
+
+RECUERDA: Somos la opción preferida en Lanzarote con más de 10 años de experiencia, ofreciendo servicio personalizado y equipos en perfecto estado.`;
+
+        // Abrir/cerrar chat
+        chatIcon.addEventListener('click', () => {
+            if (!isChatOpen) {
+                chatContainer.style.display = 'flex';
+                isChatOpen = true;
+                userInput.focus();
+            }
+        });
+
+        closeChat.addEventListener('click', () => {
+            chatContainer.style.display = 'none';
+            isChatOpen = false;
+        });
+
+        // Sugerencias de preguntas
+        suggestions.forEach(suggestion => {
+            suggestion.addEventListener('click', () => {
+                userInput.value = suggestion.getAttribute('data-question');
+                sendMessage();
+            });
+        });
+
+        // Enviar mensaje
+        function sendMessage() {
+            const message = userInput.value.trim();
+            if (message === '') return;
+
+            // Agregar mensaje del usuario al chat
+            addMessage(message, 'user');
+            userInput.value = '';
+
+            // Mostrar indicador de escritura
+            typingIndicator.style.display = 'block';
+            scrollToBottom();
+
+            // Enviar mensaje a la API
+            fetch(API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${API_KEY}`,
+                    'HTTP-Referer': window.location.href,
+                    'X-Title': 'BiciRenta - Chatbot'
+                },
+                body: JSON.stringify({
+                    model: 'x-ai/grok-4-fast',
+                    messages: [
+                        {
+                            role: 'system',
+                            content: systemContext
+                        },
+                        {
+                            role: 'user',
+                            content: message
+                        }
+                    ]
+                })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error en la respuesta de la API');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Ocultar indicador de escritura
+                    typingIndicator.style.display = 'none';
+
+                    // Agregar respuesta del bot al chat
+                    const botMessage = data.choices[0].message.content;
+                    addMessage(botMessage, 'bot');
+                })
+                .catch(error => {
+                    // Ocultar indicador de escritura
+                    typingIndicator.style.display = 'none';
+
+                    // Mostrar mensaje de error
+                    addMessage('Lo siento, ha ocurrido un error al procesar tu solicitud. Por favor, intenta de nuevo más tarde o contacta a nuestro teléfono: 555-1234.', 'bot');
+                    console.error('Error:', error);
+                });
+        }
+
+        // Agregar mensaje al chat
+        function addMessage(text, sender) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            messageElement.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
+            messageElement.textContent = text;
+            chatMessages.appendChild(messageElement);
+            scrollToBottom();
+        }
+
+        // Desplazar al final del chat
+        function scrollToBottom() {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Event listeners para enviar mensaje
+        sendButton.addEventListener('click', sendMessage);
+
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
     </script>
 </body>
+
 </html>
