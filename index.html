@@ -879,7 +879,7 @@
                 font-size: 0.8rem;
             }
         }
-        
+
         .form-row {
             display: flex;
             gap: 25px;
@@ -1168,6 +1168,163 @@
                 font-size: 24px;
             }
         }
+
+        /* Estilos para el calendario */
+        .date-range-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .date-inputs {
+            display: flex;
+            gap: 10px;
+        }
+
+        .date-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .date-input:focus {
+            border-color: var(--primary-blue);
+            outline: none;
+        }
+
+        .calendar-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .calendar-container {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 20px;
+            width: 90%;
+            max-width: 350px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .calendar-header button {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--primary-blue);
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+
+        .calendar-header button:hover {
+            background-color: var(--light-blue);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .calendar-day-header {
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+            color: var(--primary-blue);
+            padding: 5px 0;
+        }
+
+        .calendar-day {
+            text-align: center;
+            padding: 8px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .calendar-day:hover {
+            background-color: var(--light-blue);
+        }
+
+        .calendar-day.selected {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .calendar-day.in-range {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .calendar-day.disabled {
+            color: var(--medium-gray);
+            cursor: not-allowed;
+        }
+
+        .calendar-day.disabled:hover {
+            background-color: transparent;
+        }
+
+        .calendar-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .calendar-actions button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .calendar-confirm {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .calendar-confirm:hover {
+            background-color: var(--dark-blue);
+        }
+
+        .calendar-cancel {
+            background-color: var(--medium-gray);
+            color: var(--gray);
+        }
+
+        .calendar-cancel:hover {
+            background-color: var(--gray);
+            color: var(--white);
+        }
+
+        @media (max-width: 480px) {
+            .date-inputs {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 
@@ -1218,7 +1375,7 @@
                 <h2 data-lang="es">Alquiler de Bicicletas en Lanzarote</h2>
                 <h2 data-lang="en" style="display: none;">Bike Rental in Lanzarote</h2>
                 <p data-lang="es">Disfruta de Lanzarote de forma ecológica y saludable con nuestras bicicletas y
-                    scooters de movilidad. Recogida y entrega gratuita en toda la isla.</p>
+                    scooters de movilidad. Recogida y entrega en la tienda</p>
                 <p data-lang="en" style="display: none;">Enjoy Lanzarote in an eco-friendly and healthy way with our
                     bikes and mobility scooters. Free pick-up and delivery across the island.</p>
                 <div class="hero-buttons">
@@ -1699,86 +1856,133 @@
                 <p data-lang="en" style="display: none;">Do you have any questions? Feel free to contact us</p>
             </div>
             <div class="contact-container">
-    <div class="contact-info">
-        <h3 data-lang="es">Información de Contacto</h3>
-        <h3 data-lang="en" style="display: none;">Contact Information</h3>
-        <div class="contact-details">
-            <p><i class="fas fa-map-marker-alt"></i> Calle Gramillo, C. C Matagorda Local 66 y 79, 35519 Tías, Las Palmas</p>
-            <p><i class="fas fa-phone-alt"></i> +34 928 123 456</p>
-            <p><i class="fab fa-whatsapp"></i> +34 612 345 678</p>
-            <p><i class="far fa-envelope"></i> info@biosferarentalbike.com</p>
-            <p><i class="far fa-clock"></i> <span data-lang="es">Lunes a Domingo: 9:00 - 17:00</span><span data-lang="en" style="display: none;">Monday to Sunday: 9:00 - 17:00</span></p>
-        </div>
+                <div class="contact-info">
+                    <h3 data-lang="es">Información de Contacto</h3>
+                    <h3 data-lang="en" style="display: none;">Contact Information</h3>
+                    <div class="contact-details">
+                        <p><i class="fas fa-map-marker-alt"></i> Calle Gramillo, C. C Matagorda Local 66 y 79, 35519
+                            Tías, Las Palmas</p>
+                        <p><i class="fas fa-phone-alt"></i> +34 928 123 456</p>
+                        <p><i class="fab fa-whatsapp"></i> +34 612 345 678</p>
+                        <p><i class="far fa-envelope"></i> info@biosferarentalbike.com</p>
+                        <p><i class="far fa-clock"></i> <span data-lang="es">Lunes a Domingo: 9:00 - 17:00</span><span
+                                data-lang="en" style="display: none;">Monday to Sunday: 9:00 - 17:00</span></p>
+                    </div>
 
-        <h3 data-lang="es" style="margin-top: 30px;">Síguenos en Redes Sociales</h3>
-        <h3 data-lang="en" style="margin-top: 30px; display: none;">Follow us on Social Media</h3>
-        <div class="social-icons">
-            <a href="https://www.facebook.com/p/biosferabike_lanzarote-100069942483039/"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/biosferabike_lanzarote/"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-        </div>
-    </div>
-    <div class="contact-form">
-        <h3 data-lang="es">Solicita Información o Reserva</h3>
-        <h3 data-lang="en" style="display: none;">Request Information or Book</h3>
-        <form id="reservationForm">
-            <div class="form-group">
-                <label for="name" data-lang="es">Nombre completo</label>
-                <label for="name" data-lang="en" style="display: none;">Full name</label>
-                <input type="text" id="name" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" class="form-control" required>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="phone" data-lang="es">Teléfono</label>
-                    <label for="phone" data-lang="en" style="display: none;">Phone</label>
-                    <input type="tel" id="phone" class="form-control" required>
+                    <h3 data-lang="es" style="margin-top: 30px;">Síguenos en Redes Sociales</h3>
+                    <h3 data-lang="en" style="margin-top: 30px; display: none;">Follow us on Social Media</h3>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/p/biosferabike_lanzarote-100069942483039/"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/biosferabike_lanzarote/"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="dates" data-lang="es">Fechas de interés</label>
-                    <label for="dates" data-lang="en" style="display: none;">Dates of interest</label>
-                    <input type="text" id="dates" class="form-control" placeholder="Ej: 15-20 de mayo">
-                    <input type="text" id="dates-en" class="form-control" style="display: none;" placeholder="Ex: May 15-20">
+                <div class="contact-form">
+                    <h3 data-lang="es">Solicita Información o Reserva</h3>
+                    <h3 data-lang="en" style="display: none;">Request Information or Book</h3>
+                    <form id="reservationForm">
+                        <div class="form-group">
+                            <label for="name" data-lang="es">Nombre completo</label>
+                            <label for="name" data-lang="en" style="display: none;">Full name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" data-lang="es">Teléfono</label>
+                                <label for="phone" data-lang="en" style="display: none;">Phone</label>
+                                <input type="tel" id="phone" class="form-control" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label data-lang="es">Fechas de alquiler</label>
+                                <label data-lang="en" style="display: none;">Rental dates</label>
+                                <div class="date-range-container">
+                                    <div class="date-inputs">
+                                        <input type="text" id="startDate" class="date-input" placeholder="Fecha inicio"
+                                            readonly>
+                                        <input type="text" id="endDate" class="date-input" placeholder="Fecha fin"
+                                            readonly>
+                                    </div>
+                                    <button type="button" id="openCalendar" class="btn"
+                                        style="padding: 10px; font-size: 0.9rem;">
+                                        <span data-lang="es">Seleccionar fechas</span>
+                                        <span data-lang="en" style="display: none;">Select dates</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="service" data-lang="es">Servicio de interés</label>
+                            <label for="service" data-lang="en" style="display: none;">Service of interest</label>
+                            <select id="service" class="form-control" required>
+                                <option value="" data-lang="es">Selecciona un servicio</option>
+                                <option value="" data-lang="en" style="display: none;">Select a service</option>
+                                <option value="city-bike" data-lang="es">Bicicleta Urbana (12€/día)</option>
+                                <option value="city-bike" data-lang="en" style="display: none;">City Bike (€12/day)
+                                </option>
+                                <option value="hybrid-bike" data-lang="es">Bicicleta Híbrida (18€/día)</option>
+                                <option value="hybrid-bike" data-lang="en" style="display: none;">Hybrid Bike (€18/day)
+                                </option>
+                                <option value="electric-bike" data-lang="es">Bicicleta Eléctrica (25€/día)</option>
+                                <option value="electric-bike" data-lang="en" style="display: none;">Electric Bike
+                                    (€25/day)</option>
+                                <option value="mobility-scooter" data-lang="es">Scooter de Movilidad (25€/día)</option>
+                                <option value="mobility-scooter" data-lang="en" style="display: none;">Mobility Scooter
+                                    (€25/day)
+                                </option>
+                                <option value="tandem-bike" data-lang="es">Bicicleta Tándem (30€/día)</option>
+                                <option value="tandem-bike" data-lang="en" style="display: none;">Tandem Bike (€30/day)
+                                </option>
+                                <option value="other" data-lang="es">Otro servicio</option>
+                                <option value="other" data-lang="en" style="display: none;">Other service</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" data-lang="es">Mensaje adicional</label>
+                            <label for="message" data-lang="en" style="display: none;">Additional message</label>
+                            <textarea id="message" class="form-control"
+                                placeholder="Escribe tu mensaje aquí..."></textarea>
+                            <textarea id="message-en" class="form-control" style="display: none;"
+                                placeholder="Write your message here..."></textarea>
+                        </div>
+                        <button type="submit" class="btn" data-lang="es">Enviar Mensaje</button>
+                        <button type="submit" class="btn" data-lang="en" style="display: none;">Send Message</button>
+                    </form>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="service" data-lang="es">Servicio de interés</label>
-                <label for="service" data-lang="en" style="display: none;">Service of interest</label>
-                <select id="service" class="form-control" required>
-                    <option value="" data-lang="es">Selecciona un servicio</option>
-                    <option value="" data-lang="en" style="display: none;">Select a service</option>
-                    <option value="city-bike" data-lang="es">Bicicleta Urbana (12€/día)</option>
-                    <option value="city-bike" data-lang="en" style="display: none;">City Bike (€12/day)</option>
-                    <option value="hybrid-bike" data-lang="es">Bicicleta Híbrida (18€/día)</option>
-                    <option value="hybrid-bike" data-lang="en" style="display: none;">Hybrid Bike (€18/day)</option>
-                    <option value="electric-bike" data-lang="es">Bicicleta Eléctrica (25€/día)</option>
-                    <option value="electric-bike" data-lang="en" style="display: none;">Electric Bike (€25/day)</option>
-                    <option value="mobility-scooter" data-lang="es">Scooter de Movilidad (25€/día)</option>
-                    <option value="mobility-scooter" data-lang="en" style="display: none;">Mobility Scooter (€25/day)
-                    </option>
-                    <option value="tandem-bike" data-lang="es">Bicicleta Tándem (30€/día)</option>
-                    <option value="tandem-bike" data-lang="en" style="display: none;">Tandem Bike (€30/day)</option>
-                    <option value="other" data-lang="es">Otro servicio</option>
-                    <option value="other" data-lang="en" style="display: none;">Other service</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="message" data-lang="es">Mensaje adicional</label>
-                <label for="message" data-lang="en" style="display: none;">Additional message</label>
-                <textarea id="message" class="form-control" placeholder="Escribe tu mensaje aquí..."></textarea>
-                <textarea id="message-en" class="form-control" style="display: none;"
-                    placeholder="Write your message here..."></textarea>
-            </div>
-            <button type="submit" class="btn" data-lang="es">Enviar Mensaje</button>
-            <button type="submit" class="btn" data-lang="en" style="display: none;">Send Message</button>
-        </form>
-    </div>
-    </div>
         </div>
     </section>
+
+    <!-- Modal del calendario -->
+    <div class="calendar-modal" id="calendarModal">
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <button id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+                <h3 id="currentMonth"></h3>
+                <button id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="calendar-grid" id="calendarGrid">
+                <!-- Los días se generarán dinámicamente con JavaScript -->
+            </div>
+            <div class="calendar-actions">
+                <button class="calendar-cancel" id="cancelSelection">
+                    <span data-lang="es">Cancelar</span>
+                    <span data-lang="en" style="display: none;">Cancel</span>
+                </button>
+                <button class="calendar-confirm" id="confirmSelection">
+                    <span data-lang="es">Confirmar</span>
+                    <span data-lang="en" style="display: none;">Confirm</span>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -1840,7 +2044,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 Biosfera Rental Bike. <span data-lang="es">Todos los derechos reservados.</span><span
+                <p>&copy; 2025 Biosfera Rental Bike. <span data-lang="es">Todos los derechos reservados.</span><span
                         data-lang="en" style="display: none;">All rights reserved.</span></p>
             </div>
         </div>
@@ -1856,7 +2060,8 @@
     <div class="chat-container" id="chatContainer">
         <!-- Encabezado del Chat -->
         <div class="chat-header">
-            <h3><i class="fas fa-bicycle"></i> Asistente Biosfera</h3>
+            <h3><i class="fas fa-bicycle"></i> <span data-lang="es">Asistente Biosfera</span><span data-lang="en"
+                    style="display: none;">Biosfera Assistant</span></h3>
             <button class="close-chat" id="closeChat">
                 <i class="fas fa-times"></i>
             </button>
@@ -1864,9 +2069,13 @@
 
         <!-- Mensajes del Chat -->
         <div class="chat-messages" id="chatMessages">
-            <!-- Mensaje de bienvenida -->
-            <div class="message bot-message">
+            <!-- Mensaje de bienvenida en español -->
+            <div class="message bot-message" data-lang="es">
                 ¡Hola! Soy tu asistente virtual de Biosfera Rental Bike. ¿En qué puedo ayudarte hoy? 🚴‍♂️
+            </div>
+            <!-- Mensaje de bienvenida en inglés -->
+            <div class="message bot-message" data-lang="en" style="display: none;">
+                Hello! I'm your virtual assistant from Biosfera Rental Bike. How can I help you today? 🚴‍♂️
             </div>
         </div>
 
@@ -1881,17 +2090,35 @@
 
         <!-- Sugerencias de preguntas -->
         <div class="chat-suggestions">
-            <div class="suggestions-title">Preguntas frecuentes:</div>
-            <div class="suggestion" data-question="¿Qué tipos de bicicletas tienen disponibles?">Tipos de bicicletas
+            <div class="suggestions-title" data-lang="es">Preguntas frecuentes:</div>
+            <div class="suggestions-title" data-lang="en" style="display: none;">Frequently asked questions:</div>
+            <div class="suggestion" data-question-es="¿Qué tipos de bicicletas tienen disponibles?"
+                data-question-en="What types of bikes do you have available?">
+                <span data-lang="es">Tipos de bicicletas</span>
+                <span data-lang="en" style="display: none;">Types of bikes</span>
             </div>
-            <div class="suggestion" data-question="¿Cuáles son sus precios y tarifas?">Precios y tarifas</div>
-            <div class="suggestion" data-question="¿Ofrecen servicio de entrega y recogida?">Entrega y recogida</div>
-            <div class="suggestion" data-question="¿Cuál es su horario de atención?">Horario de atención</div>
+            <div class="suggestion" data-question-es="¿Cuáles son sus precios y tarifas?"
+                data-question-en="What are your prices and rates?">
+                <span data-lang="es">Precios y tarifas</span>
+                <span data-lang="en" style="display: none;">Prices and rates</span>
+            </div>
+            <div class="suggestion" data-question-es="¿Ofrecen servicio de entrega y recogida?"
+                data-question-en="Do you offer delivery and pickup service?">
+                <span data-lang="es">Entrega y recogida</span>
+                <span data-lang="en" style="display: none;">Delivery and pickup</span>
+            </div>
+            <div class="suggestion" data-question-es="¿Cuál es su horario de atención?"
+                data-question-en="What are your business hours?">
+                <span data-lang="es">Horario de atención</span>
+                <span data-lang="en" style="display: none;">Business hours</span>
+            </div>
         </div>
 
         <!-- Entrada de mensajes -->
         <div class="chat-input-container">
             <input type="text" class="chat-input" id="userInput" placeholder="Escribe tu mensaje...">
+            <input type="text" class="chat-input" id="userInputEn" style="display: none;"
+                placeholder="Type your message...">
             <button class="send-button" id="sendButton">
                 <i class="fas fa-paper-plane"></i>
             </button>
@@ -1923,6 +2150,24 @@
                     element.style.display = 'none';
                 }
             });
+
+            // Actualizar placeholders del chat
+            if (lang === 'es') {
+                document.getElementById('userInput').style.display = 'block';
+                document.getElementById('userInputEn').style.display = 'none';
+            } else {
+                document.getElementById('userInput').style.display = 'none';
+                document.getElementById('userInputEn').style.display = 'block';
+            }
+
+            // Actualizar placeholders del calendario
+            if (lang === 'es') {
+                document.getElementById('startDate').placeholder = 'Fecha inicio';
+                document.getElementById('endDate').placeholder = 'Fecha fin';
+            } else {
+                document.getElementById('startDate').placeholder = 'Start date';
+                document.getElementById('endDate').placeholder = 'End date';
+            }
         }
 
         // Mobile Menu Toggle
@@ -2044,6 +2289,7 @@
         const closeChat = document.getElementById('closeChat');
         const chatMessages = document.getElementById('chatMessages');
         const userInput = document.getElementById('userInput');
+        const userInputEn = document.getElementById('userInputEn');
         const sendButton = document.getElementById('sendButton');
         const typingIndicator = document.getElementById('typingIndicator');
         const suggestions = document.querySelectorAll('.suggestion');
@@ -2054,9 +2300,11 @@
 
         // Estado del chat
         let isChatOpen = false;
+        let currentLanguage = 'es';
 
-        // Contexto para el asistente de renta de bicicletas
-        const systemContext = `Eres "Biosfera Assistant", el asistente virtual oficial de BIOSFERA RENTAL BIKE, especializado en alquiler de bicicletas y scooters de movilidad en Lanzarote.
+        // Contexto para el asistente de renta de bicicletas - Bilingüe
+        const systemContext = {
+            es: `Eres "Biosfera Assistant", el asistente virtual oficial de BIOSFERA RENTAL BIKE, especializado en alquiler de bicicletas y scooters de movilidad en Lanzarote.
 
 INFORMACIÓN GENERAL DE LA EMPRESA:
 - Nombre: Biosfera Rental Bike
@@ -2139,7 +2387,93 @@ INSTRUCCIONES DE RESPUESTA:
 - Usa emojis moderadamente para hacer la conversación más amigable 🚲✨
 - Si no sabes algo específico, sugiere contactar por teléfono: +34 928 123 456
 
-RECUERDA: Somos la opción preferida en Lanzarote con más de 10 años de experiencia, ofreciendo servicio personalizado y equipos en perfecto estado.`;
+RECUERDA: Somos la opción preferida en Lanzarote con más de 10 años de experiencia, ofreciendo servicio personalizado y equipos en perfecto estado.`,
+
+            en: `You are "Biosfera Assistant", the official virtual assistant of BIOSFERA RENTAL BIKE, specializing in bike and mobility scooter rentals in Lanzarote.
+
+GENERAL COMPANY INFORMATION:
+- Name: Biosfera Rental Bike
+- Location: Calle Gramillo, C. C Matagorda Local 66 y 79, 35519 Tías, Las Palmas
+- Area: Puerto del Carmen, Lanzarote, Canary Islands
+- Hours: EVERY DAY from 9:00 to 17:00
+- Year founded: Over 10 years of experience in the sector
+
+MAIN SERVICES:
+1. BIKE RENTALS:
+    • Classic City Bikes: €12/day
+    - Steel frame, 7 speeds, ergonomic seat
+    - Ideal for city rides and coastal areas
+    
+    • Hybrid Bikes: €18/day
+    - Aluminum frame, 21 speeds, front suspension
+    - Perfect for road and dirt paths
+
+    • Electric Bikes: €25/day
+    - 250W motor, 60km range, LCD display
+    - Ideal for covering more distance with less effort
+
+    • Tandem Bikes: €30/day
+    - For 2 people, reinforced frame, double brakes
+    - Experience pedaling together
+
+2. MOBILITY SCOOTERS:
+    • Electric Scooters: From €25/day
+    - For people with reduced mobility
+    - Easy to handle, comfortable and safe
+
+FREE SERVICES INCLUDED:
+✓ FREE PICKUP AND DELIVERY throughout Lanzarote
+✓ FREE 24/7 ROADSIDE ASSISTANCE during rental
+✓ Safety helmet included
+✓ Security lock included
+✓ Map of recommended routes
+
+RENTAL REQUIREMENTS:
+- Documentation: Valid ID, passport or driver's license
+- Age: Over 18 years old
+- Security deposit: Varies by vehicle type (refunded at the end)
+- Credit card: For the security deposit
+
+PROMOTIONS AND DISCOUNTS:
+• 15% discount on weekly rentals (7 days or more)
+• 20% discount for groups of 5 people or more
+• Special offers in low season
+• Promotions for Lanzarote residents
+
+CONTACT INFORMATION:
+• Landline: +34 928 123 456
+• WhatsApp: +34 612 345 678
+• Email: info@biosferarentalbike.com
+• Social Media: @BiosferaRentalBike (Instagram, Facebook)
+
+COVERAGE AREAS:
+- Free delivery and pickup in: Puerto del Carmen, Matagorda, Tías, Arrecife, Costa Teguise, Playa Blanca, and the entire metropolitan area of Lanzarote.
+
+IMPORTANT POLICIES:
+• Free cancellation up to 24 hours before rental
+• Basic insurance included in all rentals
+• Daily maintenance of all vehicles
+• Vehicles renewed annually
+• Option for additional insurance available
+
+RECOMMENDED ROUTES IN LANZAROTE:
+1. Puerto del Carmen promenade
+2. Timanfaya volcano route
+3. Teguise coast
+4. Playa Blanca walk
+5. Arrecife urban route
+
+RESPONSE INSTRUCTIONS:
+- Respond in a FRIENDLY, PROFESSIONAL manner and IN ENGLISH
+- Be CONCISE but INFORMATIVE
+- Always highlight FREE services (pickup and assistance)
+- Mention that we are in PUERTO DEL CARMEN, LANZAROTE
+- For specific questions or bookings, refer to phone/WhatsApp
+- Use emojis moderately to make the conversation friendlier 🚲✨
+- If you don't know something specific, suggest contacting by phone: +34 928 123 456
+
+REMEMBER: We are the preferred choice in Lanzarote with over 10 years of experience, offering personalized service and equipment in perfect condition.`
+        };
 
         // Abrir/cerrar chat
         chatIcon.addEventListener('click', () => {
@@ -2154,22 +2488,50 @@ RECUERDA: Somos la opción preferida en Lanzarote con más de 10 años de experi
             isChatOpen = false;
         });
 
+        // Actualizar el idioma actual cuando se cambie en la página
+        document.addEventListener('DOMContentLoaded', function () {
+            // Detectar el idioma actual
+            const esBtn = document.getElementById('lang-es');
+            const enBtn = document.getElementById('lang-en');
+
+            if (esBtn.classList.contains('active')) {
+                currentLanguage = 'es';
+            } else if (enBtn.classList.contains('active')) {
+                currentLanguage = 'en';
+            }
+        });
+
         // Sugerencias de preguntas
         suggestions.forEach(suggestion => {
             suggestion.addEventListener('click', () => {
-                userInput.value = suggestion.getAttribute('data-question');
+                const question = currentLanguage === 'es'
+                    ? suggestion.getAttribute('data-question-es')
+                    : suggestion.getAttribute('data-question-en');
+
+                if (currentLanguage === 'es') {
+                    userInput.value = question;
+                } else {
+                    userInputEn.value = question;
+                }
                 sendMessage();
             });
         });
 
         // Enviar mensaje
         function sendMessage() {
-            const message = userInput.value.trim();
+            let message = '';
+            if (currentLanguage === 'es') {
+                message = userInput.value.trim();
+                userInput.value = '';
+            } else {
+                message = userInputEn.value.trim();
+                userInputEn.value = '';
+            }
+
             if (message === '') return;
 
             // Agregar mensaje del usuario al chat
             addMessage(message, 'user');
-            userInput.value = '';
 
             // Mostrar indicador de escritura
             typingIndicator.style.display = 'block';
@@ -2182,14 +2544,14 @@ RECUERDA: Somos la opción preferida en Lanzarote con más de 10 años de experi
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${API_KEY}`,
                     'HTTP-Referer': window.location.href,
-                    'X-Title': 'BiciRenta - Chatbot'
+                    'X-Title': 'Biosfera Rental Bike - Chatbot'
                 },
                 body: JSON.stringify({
                     model: 'x-ai/grok-4-fast',
                     messages: [
                         {
                             role: 'system',
-                            content: systemContext
+                            content: systemContext[currentLanguage]
                         },
                         {
                             role: 'user',
@@ -2217,7 +2579,11 @@ RECUERDA: Somos la opción preferida en Lanzarote con más de 10 años de experi
                     typingIndicator.style.display = 'none';
 
                     // Mostrar mensaje de error
-                    addMessage('Lo siento, ha ocurrido un error al procesar tu solicitud. Por favor, intenta de nuevo más tarde o contacta a nuestro teléfono: 555-1234.', 'bot');
+                    const errorMessage = currentLanguage === 'es'
+                        ? 'Lo siento, ha ocurrido un error al procesar tu solicitud. Por favor, intenta de nuevo más tarde o contacta a nuestro teléfono: +34 928 123 456.'
+                        : 'Sorry, an error occurred while processing your request. Please try again later or contact our phone: +34 928 123 456.';
+
+                    addMessage(errorMessage, 'bot');
                     console.error('Error:', error);
                 });
         }
@@ -2227,6 +2593,20 @@ RECUERDA: Somos la opción preferida en Lanzarote con más de 10 años de experi
             const messageElement = document.createElement('div');
             messageElement.classList.add('message');
             messageElement.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
+
+            // Si es un mensaje del bot, agregar atributo de idioma
+            if (sender === 'bot') {
+                messageElement.setAttribute('data-lang', currentLanguage);
+                // Ocultar mensajes en otros idiomas
+                document.querySelectorAll('.message.bot-message').forEach(msg => {
+                    if (msg.getAttribute('data-lang') !== currentLanguage) {
+                        msg.style.display = 'none';
+                    } else {
+                        msg.style.display = 'block';
+                    }
+                });
+            }
+
             messageElement.textContent = text;
             chatMessages.appendChild(messageElement);
             scrollToBottom();
@@ -2240,11 +2620,237 @@ RECUERDA: Somos la opción preferida en Lanzarote con más de 10 años de experi
         // Event listeners para enviar mensaje
         sendButton.addEventListener('click', sendMessage);
 
+        // Manejar la tecla Enter para ambos campos de entrada
         userInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 sendMessage();
             }
         });
+
+        userInputEn.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Actualizar el idioma del chat cuando se cambie en la página
+        document.addEventListener('click', function (e) {
+            if (e.target.classList.contains('lang-btn')) {
+                if (e.target.id === 'lang-es') {
+                    currentLanguage = 'es';
+                } else if (e.target.id === 'lang-en') {
+                    currentLanguage = 'en';
+                }
+
+                // Actualizar mensajes existentes según el idioma
+                document.querySelectorAll('.message.bot-message').forEach(msg => {
+                    if (msg.getAttribute('data-lang') === currentLanguage) {
+                        msg.style.display = 'block';
+                    } else {
+                        msg.style.display = 'none';
+                    }
+                });
+            }
+        });
+
+        // Funcionalidad del calendario
+        const calendarModal = document.getElementById('calendarModal');
+        const openCalendarBtn = document.getElementById('openCalendar');
+        const cancelSelectionBtn = document.getElementById('cancelSelection');
+        const confirmSelectionBtn = document.getElementById('confirmSelection');
+        const prevMonthBtn = document.getElementById('prevMonth');
+        const nextMonthBtn = document.getElementById('nextMonth');
+        const currentMonthEl = document.getElementById('currentMonth');
+        const calendarGrid = document.getElementById('calendarGrid');
+        const startDateInput = document.getElementById('startDate');
+        const endDateInput = document.getElementById('endDate');
+
+        let currentDate = new Date();
+        let selectedStartDate = null;
+        let selectedEndDate = null;
+        let tempStartDate = null;
+        let tempEndDate = null;
+
+        // Nombres de meses y días en español e inglés
+        const monthNames = {
+            es: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+        };
+
+        const dayNames = {
+            es: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+            en: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+        };
+
+        // Abrir modal del calendario
+        openCalendarBtn.addEventListener('click', () => {
+            calendarModal.style.display = 'flex';
+            renderCalendar();
+        });
+
+        // Cerrar modal del calendario
+        cancelSelectionBtn.addEventListener('click', () => {
+            calendarModal.style.display = 'none';
+            tempStartDate = null;
+            tempEndDate = null;
+        });
+
+        // Confirmar selección de fechas
+        confirmSelectionBtn.addEventListener('click', () => {
+            if (tempStartDate && tempEndDate) {
+                selectedStartDate = tempStartDate;
+                selectedEndDate = tempEndDate;
+
+                // Formatear fechas para mostrar
+                const startFormatted = formatDate(selectedStartDate);
+                const endFormatted = formatDate(selectedEndDate);
+
+                startDateInput.value = startFormatted;
+                endDateInput.value = endFormatted;
+
+                calendarModal.style.display = 'none';
+            }
+        });
+
+        // Navegación entre meses
+        prevMonthBtn.addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            renderCalendar();
+        });
+
+        nextMonthBtn.addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            renderCalendar();
+        });
+
+        // Renderizar calendario
+        function renderCalendar() {
+            const currentLanguage = document.getElementById('lang-es').classList.contains('active') ? 'es' : 'en';
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+
+            // Actualizar título del mes
+            currentMonthEl.textContent = `${monthNames[currentLanguage][month]} ${year}`;
+
+            // Limpiar grid
+            calendarGrid.innerHTML = '';
+
+            // Añadir encabezados de días
+            for (let i = 0; i < 7; i++) {
+                const dayHeader = document.createElement('div');
+                dayHeader.classList.add('calendar-day-header');
+                dayHeader.textContent = dayNames[currentLanguage][i];
+                calendarGrid.appendChild(dayHeader);
+            }
+
+            // Obtener primer día del mes y último día del mes
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
+
+            // Obtener día de la semana del primer día (0 = Domingo, 1 = Lunes, etc.)
+            const firstDayIndex = firstDay.getDay();
+
+            // Obtener último día del mes anterior
+            const prevMonthLastDay = new Date(year, month, 0).getDate();
+
+            // Añadir días del mes anterior
+            for (let i = firstDayIndex - 1; i >= 0; i--) {
+                const day = document.createElement('div');
+                day.classList.add('calendar-day', 'disabled');
+                day.textContent = prevMonthLastDay - i;
+                calendarGrid.appendChild(day);
+            }
+
+            // Añadir días del mes actual
+            for (let i = 1; i <= lastDay.getDate(); i++) {
+                const day = document.createElement('div');
+                day.classList.add('calendar-day');
+                day.textContent = i;
+                day.dataset.date = `${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
+
+                const date = new Date(year, month, i);
+
+                // Marcar si está en el rango seleccionado
+                if (tempStartDate && tempEndDate && date >= tempStartDate && date <= tempEndDate) {
+                    day.classList.add('in-range');
+                }
+
+                // Marcar si es la fecha de inicio o fin
+                if (tempStartDate && isSameDay(date, tempStartDate)) {
+                    day.classList.add('selected');
+                }
+
+                if (tempEndDate && isSameDay(date, tempEndDate)) {
+                    day.classList.add('selected');
+                }
+
+                // Manejar clic en día
+                day.addEventListener('click', () => {
+                    if (day.classList.contains('disabled')) return;
+
+                    const clickedDate = new Date(year, month, i);
+
+                    if (!tempStartDate || (tempStartDate && tempEndDate)) {
+                        // Primera selección o reinicio
+                        tempStartDate = clickedDate;
+                        tempEndDate = null;
+                    } else if (clickedDate < tempStartDate) {
+                        // Si la fecha seleccionada es anterior a la fecha de inicio
+                        tempEndDate = tempStartDate;
+                        tempStartDate = clickedDate;
+                    } else {
+                        // Fecha de fin
+                        tempEndDate = clickedDate;
+                    }
+
+                    renderCalendar();
+                });
+
+                calendarGrid.appendChild(day);
+            }
+
+            // Calcular cuántos días del próximo mes necesitamos mostrar
+            const totalCells = 42; // 6 filas de 7 días
+            const daysSoFar = firstDayIndex + lastDay.getDate();
+            const nextMonthDays = totalCells - daysSoFar;
+
+            // Añadir días del próximo mes
+            for (let i = 1; i <= nextMonthDays; i++) {
+                const day = document.createElement('div');
+                day.classList.add('calendar-day', 'disabled');
+                day.textContent = i;
+                calendarGrid.appendChild(day);
+            }
+        }
+
+        // Función auxiliar para comparar días
+        function isSameDay(date1, date2) {
+            return date1.getFullYear() === date2.getFullYear() &&
+                date1.getMonth() === date2.getMonth() &&
+                date1.getDate() === date2.getDate();
+        }
+
+        // Formatear fecha para mostrar
+        function formatDate(date) {
+            const currentLanguage = document.getElementById('lang-es').classList.contains('active') ? 'es' : 'en';
+
+            if (currentLanguage === 'es') {
+                return date.toLocaleDateString('es-ES', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                });
+            } else {
+                return date.toLocaleDateString('en-US', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                });
+            }
+        }
+
+        // Inicializar el calendario
+        renderCalendar();
 
     </script>
 </body>
