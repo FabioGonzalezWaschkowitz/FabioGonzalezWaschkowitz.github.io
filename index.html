@@ -314,6 +314,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
             gap: clamp(20px, 3vw, 30px);
+            align-items: stretch;
         }
 
         .service-card {
@@ -356,22 +357,23 @@
             color: var(--primary-yellow);
             font-weight: bold;
             font-size: clamp(1rem, 2.5vw, 1.2rem);
-            margin: 10px 0;
+            margin-top: auto;
+            padding-top: 15px;
         }
 
-        /* Bikes Section */
-        .bikes {
+        /* Vehicles Section */
+        .vehicles {
             padding: clamp(50px, 10vw, 80px) 0;
             background-color: var(--white);
         }
 
-        .bikes-grid {
+        .vehicles-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
             gap: clamp(20px, 3vw, 30px);
         }
 
-        .bike-card {
+        .vehicle-card {
             background-color: var(--light-gray);
             border-radius: 10px;
             overflow: hidden;
@@ -382,53 +384,53 @@
             flex-direction: column;
         }
 
-        .bike-card:hover {
+        .vehicle-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
 
-        .bike-image {
+        .vehicle-image {
             height: 200px;
             overflow: hidden;
         }
 
-        .bike-image img {
+        .vehicle-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s;
         }
 
-        .bike-card:hover .bike-image img {
+        .vehicle-card:hover .vehicle-image img {
             transform: scale(1.1);
         }
 
-        .bike-content {
+        .vehicle-content {
             padding: 20px;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
 
-        .bike-content h3 {
+        .vehicle-content h3 {
             color: var(--primary-blue);
             margin-bottom: 10px;
             font-size: clamp(1.2rem, 3vw, 1.4rem);
         }
 
-        .bike-features {
+        .vehicle-features {
             list-style: none;
             margin: 15px 0;
             flex-grow: 1;
         }
 
-        .bike-features li {
+        .vehicle-features li {
             margin-bottom: 8px;
             display: flex;
             align-items: center;
         }
 
-        .bike-features li i {
+        .vehicle-features li i {
             color: var(--primary-yellow);
             margin-right: 10px;
             font-size: 0.9rem;
@@ -466,6 +468,11 @@
             padding: clamp(20px, 4vw, 30px);
             box-shadow: var(--shadow);
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+            min-height: min-content;
         }
 
         .testimonial-text {
@@ -487,6 +494,7 @@
             justify-content: center;
             flex-wrap: wrap;
             gap: 15px;
+            margin-top: auto;
         }
 
         .author-avatar {
@@ -1344,8 +1352,8 @@
                             style="display: none;">About</a></li>
                     <li><a href="#services" data-lang="es">Servicios</a><a href="#services" data-lang="en"
                             style="display: none;">Services</a></li>
-                    <li><a href="#bikes" data-lang="es">Bicicletas</a><a href="#bikes" data-lang="en"
-                            style="display: none;">Bikes</a></li>
+                    <li><a href="#vehicles" data-lang="es">Vehículos</a><a href="#vehicles" data-lang="en"
+                            style="display: none;">Vehicles</a></li>
                     <li><a href="#testimonials" data-lang="es">Opiniones</a><a href="#testimonials" data-lang="en"
                             style="display: none;">Reviews</a></li>
                     <li><a href="#location" data-lang="es">Ubicación</a><a href="#location" data-lang="en"
@@ -1534,100 +1542,243 @@
                             tu experiencia más segura y cómoda.</p>
                         <p data-lang="en" style="display: none;">Helmets, locks, child seats and other accessories
                             available to make your experience safer and more comfortable.</p>
-                        <div class="service-price" data-lang="es">Desde 3€/día</div>
-                        <div class="service-price" data-lang="en" style="display: none;">From €3/day</div>
+                        <div class="service-price" data-lang="es">Incluido</div>
+                        <div class="service-price" data-lang="en" style="display: none;">Included</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Bikes Section -->
-    <section class="bikes" id="bikes">
+    <!-- Vehicles Section -->
+    <section class="vehicles" id="vehicles">
         <div class="container">
             <div class="section-title">
-                <h2 data-lang="es">Nuestras Bicicletas</h2>
-                <h2 data-lang="en" style="display: none;">Our Bikes</h2>
-                <p data-lang="es">Elige la bicicleta perfecta para tu aventura en Lanzarote</p>
-                <p data-lang="en" style="display: none;">Choose the perfect bike for your adventure in Lanzarote</p>
+                <h2 data-lang="es">Nuestros Vehículos</h2>
+                <h2 data-lang="en" style="display: none;">Our Vehicles</h2>
+                <p data-lang="es">Elige el vehículo perfecto para tu aventura en Lanzarote</p>
+                <p data-lang="en" style="display: none;">Choose the perfect vehicle for your adventure in Lanzarote</p>
             </div>
-            <div class="bikes-grid">
-                <div class="bike-card">
-                    <div class="bike-image">
+
+            <div class="vehicles-grid">
+                <!-- Scooter Eléctrico -->
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
                         <img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="Bicicleta Híbrida">
+                            alt="Scooter Eléctrico">
                     </div>
-                    <div class="bike-content">
-                        <h3 data-lang="es">Bicicleta Híbrida</h3>
-                        <h3 data-lang="en" style="display: none;">Hybrid Bike</h3>
-                        <p data-lang="es">Perfecta para carretera y caminos de tierra. Versátil y cómoda.</p>
-                        <p data-lang="en" style="display: none;">Perfect for road and dirt paths. Versatile and
-                            comfortable.</p>
-                        <ul class="bike-features">
-                            <li><i class="fas fa-check"></i> <span data-lang="es">Cuadro de aluminio</span><span
-                                    data-lang="en" style="display: none;">Aluminum frame</span></li>
-                            <li><i class="fas fa-check"></i> <span data-lang="es">Cambios 21 velocidades</span><span
-                                    data-lang="en" style="display: none;">21-speed gears</span></li>
-                            <li><i class="fas fa-check"></i> <span data-lang="es">Suspensión delantera</span><span
-                                    data-lang="en" style="display: none;">Front suspension</span></li>
-                            <li><i class="fas fa-check"></i> <span data-lang="es">Frenos de disco</span><span
-                                    data-lang="en" style="display: none;">Disc brakes</span></li>
+                    <div class="vehicle-content">
+                        <h3 data-lang="es">Scooter Eléctrico</h3>
+                        <h3 data-lang="en" style="display: none;">Electric Scooter</h3>
+                        <p data-lang="es">Movilidad urbana rápida y ecológica.</p>
+                        <p data-lang="en" style="display: none;">Fast and eco-friendly urban mobility.</p>
+                        <ul class="vehicle-features">
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Fácil de manejar</span><span
+                                    data-lang="en" style="display: none;">Easy to handle</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Batería de larga duración</span><span
+                                    data-lang="en" style="display: none;">Long-lasting battery</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Ligero y plegable</span><span
+                                    data-lang="en" style="display: none;">Lightweight and foldable</span></li>
                         </ul>
-                        <div class="service-price" data-lang="es">18€/día</div>
-                        <div class="service-price" data-lang="en" style="display: none;">€18/day</div>
+                        <div class="service-price" data-lang="es">1ª Hora: 15€ | Horas extra: 10€</div>
+                        <div class="service-price" data-lang="en" style="display: none;">1st Hour: €15 | Extra hours:
+                            €10</div>
                         <a href="#contact" class="btn" data-lang="es">Reservar</a>
                         <a href="#contact" class="btn" data-lang="en" style="display: none;">Book</a>
                     </div>
                 </div>
-                <div class="bike-card">
-                    <div class="bike-image">
+
+                <!-- Mobility Scooter -->
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
                         <img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="Bicicleta Eléctrica">
+                            alt="Mobility Scooter">
                     </div>
-                    <div class="bike-content">
-                        <h3 data-lang="es">Bicicleta Eléctrica</h3>
-                        <h3 data-lang="en" style="display: none;">Electric Bike</h3>
-                        <p data-lang="es">Recorre más distancia con menos esfuerzo. Perfecta para colinas.</p>
-                        <p data-lang="en" style="display: none;">Cover more distance with less effort. Perfect for
-                            hills.</p>
-                        <ul class="bike-features">
-                            <li><i class="fas fa-check"></i> <span data-lang="es">Motor 250W</span><span data-lang="en"
-                                    style="display: none;">250W motor</span></li>
-                            <li><i class="fas fa-check"></i> <span data-lang="es">Autonomía 60km</span><span
-                                    data-lang="en" style="display: none;">60km range</span></li>
-                            <li><i class="fas fa-check"></i> <span data-lang="es">Pantalla LCD</span><span
-                                    data-lang="en" style="display: none;">LCD display</span></li>
-                            <li><i class="fas fa-check"></i> <span data-lang="es">Carga rápida</span><span
-                                    data-lang="en" style="display: none;">Fast charging</span></li>
+                    <div class="vehicle-content">
+                        <h3 data-lang="es">Mobility Scooter</h3>
+                        <h3 data-lang="en" style="display: none;">Mobility Scooter</h3>
+                        <p data-lang="es">Comodidad y autonomía para desplazarte sin esfuerzo.</p>
+                        <p data-lang="en" style="display: none;">Comfort and autonomy to move around effortlessly.</p>
+                        <ul class="vehicle-features">
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Asiento cómodo</span><span
+                                    data-lang="en" style="display: none;">Comfortable seat</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Fácil de conducir</span><span
+                                    data-lang="en" style="display: none;">Easy to drive</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Alta autonomía</span><span
+                                    data-lang="en" style="display: none;">High autonomy</span></li>
                         </ul>
-                        <div class="service-price" data-lang="es">25€/día</div>
-                        <div class="service-price" data-lang="en" style="display: none;">€25/day</div>
+                        <div class="service-price" data-lang="es">1 día: 20€ | 3 días: 16€/día | 1 semana: 110€ | 2
+                            semanas: 210€ | 3 semanas: 250€ | 1 mes: 300€</div>
+                        <div class="service-price" data-lang="en" style="display: none;">1 day: €20 | 3 days: €16/day |
+                            1 week: €110 | 2 weeks: €210 | 3 weeks: €250 | 1 month: €300</div>
                         <a href="#contact" class="btn" data-lang="es">Reservar</a>
                         <a href="#contact" class="btn" data-lang="en" style="display: none;">Book</a>
                     </div>
                 </div>
-                <div class="bike-card">
-                    <div class="bike-image">
+
+                <!-- Tándem -->
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
                         <img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                             alt="Tándem">
                     </div>
-                    <div class="bike-content">
-                        <h3 data-lang="es">Bicicleta Tándem</h3>
-                        <h3 data-lang="en" style="display: none;">Tandem Bike</h3>
+                    <div class="vehicle-content">
+                        <h3 data-lang="es">Tándem</h3>
+                        <h3 data-lang="en" style="display: none;">Tandem</h3>
                         <p data-lang="es">Disfruta de la experiencia de pedalear en compañía.</p>
                         <p data-lang="en" style="display: none;">Enjoy the experience of pedaling together.</p>
-                        <ul class="bike-features">
+                        <ul class="vehicle-features">
                             <li><i class="fas fa-check"></i> <span data-lang="es">Para 2 personas</span><span
                                     data-lang="en" style="display: none;">For 2 people</span></li>
                             <li><i class="fas fa-check"></i> <span data-lang="es">Cuadro reforzado</span><span
                                     data-lang="en" style="display: none;">Reinforced frame</span></li>
                             <li><i class="fas fa-check"></i> <span data-lang="es">Frenos dobles</span><span
                                     data-lang="en" style="display: none;">Double brakes</span></li>
-                            <li><i class="fas fa-check"></i> <span data-lang="es">Asientos ajustables</span><span
-                                    data-lang="en" style="display: none;">Adjustable seats</span></li>
                         </ul>
-                        <div class="service-price" data-lang="es">30€/día</div>
-                        <div class="service-price" data-lang="en" style="display: none;">€30/day</div>
+                        <div class="service-price" data-lang="es">15€ por día</div>
+                        <div class="service-price" data-lang="en" style="display: none;">€15 per day</div>
+                        <a href="#contact" class="btn" data-lang="es">Reservar</a>
+                        <a href="#contact" class="btn" data-lang="en" style="display: none;">Book</a>
+                    </div>
+                </div>
+
+                <!-- Bicicleta Normal -->
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
+                        <img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Bicicleta Normal">
+                    </div>
+                    <div class="vehicle-content">
+                        <h3 data-lang="es">Bicicleta Normal</h3>
+                        <h3 data-lang="en" style="display: none;">Normal Bike</h3>
+                        <p data-lang="es">Perfecta para carretera y caminos de tierra. Versátil y cómoda.</p>
+                        <p data-lang="en" style="display: none;">Perfect for road and dirt paths. Versatile and
+                            comfortable.</p>
+                        <ul class="vehicle-features">
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Cuadro de aluminio</span><span
+                                    data-lang="en" style="display: none;">Aluminum frame</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Cambios 21 velocidades</span><span
+                                    data-lang="en" style="display: none;">21-speed gears</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Suspensión delantera</span><span
+                                    data-lang="en" style="display: none;">Front suspension</span></li>
+                        </ul>
+                        <div class="service-price" data-lang="es">1 día: 10€ | 2-3 días: 8€/día | 4-8 días: 7€/día | +8
+                            días: 6€/día | 1 mes: 5€/día | 1 semana: 50€</div>
+                        <div class="service-price" data-lang="en" style="display: none;">1 day: €10 | 2-3 days: €8/day |
+                            4-8 days: €7/day | +8 days: €6/day | 1 month: €5/day | 1 week: €50</div>
+                        <a href="#contact" class="btn" data-lang="es">Reservar</a>
+                        <a href="#contact" class="btn" data-lang="en" style="display: none;">Book</a>
+                    </div>
+                </div>
+
+                <!-- Bicicleta de Montaña -->
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
+                        <img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Bicicleta de Montaña">
+                    </div>
+                    <div class="vehicle-content">
+                        <h3 data-lang="es">Bicicleta de Montaña</h3>
+                        <h3 data-lang="en" style="display: none;">Mountain Bike</h3>
+                        <p data-lang="es">Ideal para terrenos irregulares y senderos de montaña.</p>
+                        <p data-lang="en" style="display: none;">Ideal for rough terrain and mountain trails.</p>
+                        <ul class="vehicle-features">
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Suspensión completa</span><span
+                                    data-lang="en" style="display: none;">Full suspension</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Neumáticos anchos</span><span
+                                    data-lang="en" style="display: none;">Wide tires</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Frenos de disco
+                                    hidráulicos</span><span data-lang="en" style="display: none;">Hydraulic disc
+                                    brakes</span></li>
+                        </ul>
+                        <div class="service-price" data-lang="es">1 día: 15€ | 2-3 días: 12€/día | 4-8 días: 10€/día |
+                            +8 días: 8€/día | 1 mes: 7€/día | 1 semana: 70€</div>
+                        <div class="service-price" data-lang="en" style="display: none;">1 day: €15 | 2-3 days: €12/day
+                            | 4-8 days: €10/day | +8 days: €8/day | 1 month: €7/day | 1 week: €70</div>
+                        <a href="#contact" class="btn" data-lang="es">Reservar</a>
+                        <a href="#contact" class="btn" data-lang="en" style="display: none;">Book</a>
+                    </div>
+                </div>
+
+                <!-- Bicicleta Eléctrica -->
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
+                        <img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Bicicleta Eléctrica">
+                    </div>
+                    <div class="vehicle-content">
+                        <h3 data-lang="es">Bicicleta Eléctrica</h3>
+                        <h3 data-lang="en" style="display: none;">Electric Bike</h3>
+                        <p data-lang="es">Recorre más distancia con menos esfuerzo. Perfecta para colinas.</p>
+                        <p data-lang="en" style="display: none;">Cover more distance with less effort. Perfect for
+                            hills.</p>
+                        <ul class="vehicle-features">
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Motor 250W</span><span data-lang="en"
+                                    style="display: none;">250W motor</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Autonomía 60km</span><span
+                                    data-lang="en" style="display: none;">60km range</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Pantalla LCD</span><span
+                                    data-lang="en" style="display: none;">LCD display</span></li>
+                        </ul>
+                        <div class="service-price" data-lang="es">1 día: 30€ | 2-3 días: 25€/día | 4-8 días: 20€/día |
+                            +8 días: 18€/día | 1 mes: 16€/día | 1 semana: 110€</div>
+                        <div class="service-price" data-lang="en" style="display: none;">1 day: €30 | 2-3 days: €25/day
+                            | 4-8 days: €20/day | +8 days: €18/day | 1 month: €16/day | 1 week: €110</div>
+                        <a href="#contact" class="btn" data-lang="es">Reservar</a>
+                        <a href="#contact" class="btn" data-lang="en" style="display: none;">Book</a>
+                    </div>
+                </div>
+
+                <!-- Carritos -->
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
+                        <img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Carritos">
+                    </div>
+                    <div class="vehicle-content">
+                        <h3 data-lang="es">Carritos</h3>
+                        <h3 data-lang="en" style="display: none;">Carts</h3>
+                        <p data-lang="es">Ideal para transportar carga o pasajeros adicionales.</p>
+                        <p data-lang="en" style="display: none;">Ideal for transporting cargo or additional passengers.
+                        </p>
+                        <ul class="vehicle-features">
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Capacidad de carga</span><span
+                                    data-lang="en" style="display: none;">Load capacity</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Fácil de acoplar</span><span
+                                    data-lang="en" style="display: none;">Easy to attach</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Ruedas resistentes</span><span
+                                    data-lang="en" style="display: none;">Durable wheels</span></li>
+                        </ul>
+                        <div class="service-price" data-lang="es">1 hora: 15€ | Horas extra: 10€</div>
+                        <div class="service-price" data-lang="en" style="display: none;">1 hour: €15 | Extra hours: €10
+                        </div>
+                        <a href="#contact" class="btn" data-lang="es">Reservar</a>
+                        <a href="#contact" class="btn" data-lang="en" style="display: none;">Book</a>
+                    </div>
+                </div>
+
+                <!-- Limusina -->
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
+                        <img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Limusina">
+                    </div>
+                    <div class="vehicle-content">
+                        <h3 data-lang="es">Limusina</h3>
+                        <h3 data-lang="en" style="display: none;">Limousine</h3>
+                        <p data-lang="es">Viaja con estilo y comodidad en ocasiones especiales.</p>
+                        <p data-lang="en" style="display: none;">Travel in style and comfort for special occasions.</p>
+                        <ul class="vehicle-features">
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Amplio espacio interior</span><span
+                                    data-lang="en" style="display: none;">Spacious interior</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Comodidades de lujo</span><span
+                                    data-lang="en" style="display: none;">Luxury amenities</span></li>
+                            <li><i class="fas fa-check"></i> <span data-lang="es">Conductor profesional</span><span
+                                    data-lang="en" style="display: none;">Professional driver</span></li>
+                        </ul>
+                        <div class="service-price" data-lang="es">1 hora: 25€ | Horas extra: 15€</div>
+                        <div class="service-price" data-lang="en" style="display: none;">1 hour: €25 | Extra hours: €15
+                        </div>
                         <a href="#contact" class="btn" data-lang="es">Reservar</a>
                         <a href="#contact" class="btn" data-lang="en" style="display: none;">Book</a>
                     </div>
@@ -1651,20 +1802,19 @@
                         <div class="testimonial-slide">
                             <div class="testimonial-card">
                                 <div class="testimonial-text">
-                                    <p data-lang="es">Excelente servicio. Las bicicletas están en perfecto estado y la
-                                        recogida en el hotel fue puntual. ¡Muy recomendable!</p>
-                                    <p data-lang="en" style="display: none;">Excellent service. The bikes are in perfect
-                                        condition and the hotel pickup was punctual. Highly recommended!</p>
+                                    <p data-lang="es">Esta empresa dirigida por una gran familia. Alquilamos una de sus
+                                        bicicletas especiales y mi nieta se lo pasó fenomenal dando un paseo por la
+                                        avenida.</p>
+                                    <p data-lang="en" style="display: none;">This family-run business is wonderful. We
+                                        rented one of their special bikes and my granddaughter had a fantastic time
+                                        riding along the avenue.</p>
                                 </div>
                                 <div class="testimonial-author">
                                     <div class="author-avatar">
-                                        <img src="https://randomuser.me/api/portraits/women/43.jpg"
-                                            alt="María González">
+                                        <img src="images/imgUsuario.webp" alt="Amador Abruneiras-Jalon">
                                     </div>
                                     <div class="author-info">
-                                        <h4>María González</h4>
-                                        <p data-lang="es">Barcelona, España</p>
-                                        <p data-lang="en" style="display: none;">Barcelona, Spain</p>
+                                        <h4>Amador Abruneiras-Jalon</h4>
                                     </div>
                                 </div>
                             </div>
@@ -1672,19 +1822,23 @@
                         <div class="testimonial-slide">
                             <div class="testimonial-card">
                                 <div class="testimonial-text">
-                                    <p data-lang="es">Alquilamos scooters para mis padres y quedaron encantados. El
-                                        servicio de asistencia es increíble, muy profesionales.</p>
-                                    <p data-lang="en" style="display: none;">We rented scooters for my parents and they
-                                        were delighted. The assistance service is amazing, very professional.</p>
+                                    <p data-lang="es">Una maravilla de personas... una atención increíble cogimos un par
+                                        de bicicletas eléctricas mi mujer y yo... me dejó probar una antes para que
+                                        viese como andaba... y no lo dudamos... volveremos a la zona y por supuesto a su
+                                        negocio familiar... gracias por todo. Negocio familiar y gente de la isla...
+                                        como tiene que ser👌</p>
+                                    <p data-lang="en" style="display: none;">Wonderful people... incredible service. My
+                                        wife and I rented a couple of electric bikes... they let me try one first to see
+                                        how it worked... and we didn't hesitate... we'll come back to the area and of
+                                        course to their family business... thanks for everything. Family business and
+                                        local people... as it should be👌</p>
                                 </div>
                                 <div class="testimonial-author">
                                     <div class="author-avatar">
-                                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos Müller">
+                                        <img src="images/imgUsuario.webp" alt="Dani González">
                                     </div>
                                     <div class="author-info">
-                                        <h4>Carlos Müller</h4>
-                                        <p data-lang="es">Berlín, Alemania</p>
-                                        <p data-lang="en" style="display: none;">Berlin, Germany</p>
+                                        <h4>Dani González</h4>
                                     </div>
                                 </div>
                             </div>
@@ -1692,20 +1846,60 @@
                         <div class="testimonial-slide">
                             <div class="testimonial-card">
                                 <div class="testimonial-text">
-                                    <p data-lang="es">Las bicicletas eléctricas son geniales para recorrer Lanzarote. La
-                                        batería dura todo el día y el servicio de recogida es muy conveniente.</p>
-                                    <p data-lang="en" style="display: none;">The electric bikes are great for exploring
-                                        Lanzarote. The battery lasts all day and the pickup service is very convenient.
-                                    </p>
+                                    <p data-lang="es">Very helpful business, my punctured front wheel on my bike was
+                                        very quickly repaired which allowed me to visit most of the south coast that
+                                        day. Great guys excellent service.</p>
+                                    <p data-lang="en" style="display: none;">Very helpful business, my punctured front
+                                        wheel on my bike was very quickly repaired which allowed me to visit most of the
+                                        south coast that day. Great guys excellent service.</p>
                                 </div>
                                 <div class="testimonial-author">
                                     <div class="author-avatar">
-                                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Sarah Johnson">
+                                        <img src="images/imgUsuario.webp" alt="Raymond Mosettig">
                                     </div>
                                     <div class="author-info">
-                                        <h4>Sarah Johnson</h4>
-                                        <p data-lang="es">Londres, Reino Unido</p>
-                                        <p data-lang="en" style="display: none;">London, UK</p>
+                                        <h4>Raymond Mosettig</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-slide">
+                            <div class="testimonial-card">
+                                <div class="testimonial-text">
+                                    <p data-lang="es">Amazing Family run business, they have another 2 round the corner.
+                                        I met the owner, son and daughter they were all a delight. So friendly and
+                                        welcoming. I had a bike one day and an electric scooter another day. Will always
+                                        come back to them when I'm in Lanzarote.</p>
+                                    <p data-lang="en" style="display: none;">Amazing Family run business, they have
+                                        another 2 round the corner. I met the owner, son and daughter they were all a
+                                        delight. So friendly and welcoming. I had a bike one day and an electric scooter
+                                        another day. Will always come back to them when I'm in Lanzarote.</p>
+                                </div>
+                                <div class="testimonial-author">
+                                    <div class="author-avatar">
+                                        <img src="images/imgUsuario.webp" alt="Vijay">
+                                    </div>
+                                    <div class="author-info">
+                                        <h4>Vijay</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-slide">
+                            <div class="testimonial-card">
+                                <div class="testimonial-text">
+                                    <p data-lang="es">Very good. Nice bikes, reasonably priced. The two women were very
+                                        amenable and helpful members of staff. Lovely to ride around the island.</p>
+                                    <p data-lang="en" style="display: none;">Very good. Nice bikes, reasonably priced.
+                                        The two women were very amenable and helpful members of staff. Lovely to ride
+                                        around the island.</p>
+                                </div>
+                                <div class="testimonial-author">
+                                    <div class="author-avatar">
+                                        <img src="images/imgUsuario.webp" alt="Edward Bennett">
+                                    </div>
+                                    <div class="author-info">
+                                        <h4>Edward Bennett</h4>
                                     </div>
                                 </div>
                             </div>
@@ -1714,6 +1908,8 @@
                 </div>
                 <div class="slider-nav">
                     <div class="slider-dot active"></div>
+                    <div class="slider-dot"></div>
+                    <div class="slider-dot"></div>
                     <div class="slider-dot"></div>
                     <div class="slider-dot"></div>
                 </div>
@@ -1742,7 +1938,7 @@
                             style="display: none;">Opening Hours:</strong>&nbsp;9:00 - 17:00 (todos los días / every
                         day)</p>
                     <p><i class="fas fa-phone-alt"></i> <strong data-lang="es">Teléfono:</strong><strong data-lang="en"
-                            style="display: none;">Phone:</strong>&nbsp;+34 928 123 456</p>
+                            style="display: none;">Phone:</strong>&nbsp;+34 628 514 368</p>
 
                     <a href="https://maps.google.com" target="_blank" class="btn" style="margin-top: 20px;"
                         data-lang="es">Cómo Llegar</a>
@@ -1791,11 +1987,11 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p data-lang="es">El precio incluye: bicicleta en perfecto estado, casco, candado, asistencia en
-                            carretera 24/7 y recogida/entrega gratuita en toda Lanzarote. Los accesorios adicionales
+                        <p data-lang="es">El precio incluye: bicicleta en perfecto estado, casco, candado y asistencia en
+                            carretera 24/7. Los accesorios adicionales
                             como sillas para niños tienen un coste extra.</p>
                         <p data-lang="en" style="display: none;">The price includes: bike in perfect condition, helmet,
-                            lock, 24/7 roadside assistance and free pickup/delivery throughout Lanzarote. Additional
+                            lock and 24/7 roadside assistance. Additional
                             accessories such as child seats have an extra cost.</p>
                     </div>
                 </div>
@@ -1862,9 +2058,9 @@
                     <div class="contact-details">
                         <p><i class="fas fa-map-marker-alt"></i> Calle Gramillo, C. C Matagorda Local 66 y 79, 35519
                             Tías, Las Palmas</p>
-                        <p><i class="fas fa-phone-alt"></i> +34 928 123 456</p>
-                        <p><i class="fab fa-whatsapp"></i> +34 612 345 678</p>
-                        <p><i class="far fa-envelope"></i> info@biosferarentalbike.com</p>
+                        <p><i class="fas fa-phone-alt"></i> +34 628 514 368</p>
+                        <p><i class="fab fa-whatsapp"></i> +34 692 035 563</p>
+                        <p><i class="far fa-envelope"></i> biosferabikerental@gmail.com</p>
                         <p><i class="far fa-clock"></i> <span data-lang="es">Lunes a Domingo: 9:00 - 17:00</span><span
                                 data-lang="en" style="display: none;">Monday to Sunday: 9:00 - 17:00</span></p>
                     </div>
@@ -1875,7 +2071,6 @@
                         <a href="https://www.facebook.com/p/biosferabike_lanzarote-100069942483039/"><i
                                 class="fab fa-facebook-f"></i></a>
                         <a href="https://www.instagram.com/biosferabike_lanzarote/"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
                 <div class="contact-form">
@@ -1898,20 +2093,17 @@
                                 <input type="tel" id="phone" class="form-control" required>
                             </div>
                         </div>
-                        
+
                         <div class="form-row">
                             <div class="form-group">
                                 <label data-lang="es">Fechas de alquiler</label>
                                 <label data-lang="en" style="display: none;">Rental dates</label>
                                 <div class="date-range-container">
                                     <div class="date-inputs">
-                                        <input type="text" id="startDate" class="date-input" placeholder="Fecha inicio"
-                                            readonly>
-                                        <input type="text" id="endDate" class="date-input" placeholder="Fecha fin"
-                                            readonly>
+                                        <input type="text" id="startDate" class="date-input" placeholder="Fecha inicio" readonly>
+                                        <input type="text" id="endDate" class="date-input" placeholder="Fecha fin" readonly>
                                     </div>
-                                    <button type="button" id="openCalendar" class="btn"
-                                        style="padding: 10px; font-size: 0.9rem;">
+                                    <button type="button" id="openCalendar" class="btn" style="padding: 10px; font-size: 0.9rem;">
                                         <span data-lang="es">Seleccionar fechas</span>
                                         <span data-lang="en" style="display: none;">Select dates</span>
                                     </button>
@@ -2007,9 +2199,9 @@
                         <li><a href="#services"><i class="fas fa-chevron-right"></i> <span
                                     data-lang="es">Servicios</span><span data-lang="en"
                                     style="display: none;">Services</span></a></li>
-                        <li><a href="#bikes"><i class="fas fa-chevron-right"></i> <span
-                                    data-lang="es">Bicicletas</span><span data-lang="en"
-                                    style="display: none;">Bikes</span></a></li>
+                        <li><a href="#vehicles"><i class="fas fa-chevron-right"></i> <span
+                                    data-lang="es">Vehículos</span><span data-lang="en"
+                                    style="display: none;">Vehicles</span></a></li>
                         <li><a href="#contact"><i class="fas fa-chevron-right"></i> <span
                                     data-lang="es">Contacto</span><span data-lang="en"
                                     style="display: none;">Contact</span></a></li>
@@ -2019,17 +2211,26 @@
                     <h3 data-lang="es">Nuestros Servicios</h3>
                     <h3 data-lang="en" style="display: none;">Our Services</h3>
                     <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-bicycle"></i> <span data-lang="es">Bicicletas
-                                    Urbanas</span><span data-lang="en" style="display: none;">City Bikes</span></a></li>
-                        <li><a href="#"><i class="fas fa-wheelchair"></i> <span data-lang="es">Scooters
+                        <li>
+                            <div href="#"><i class="fas fa-bicycle"></i> <span data-lang="es">Bicicletas
+                                    Urbanas</span><span data-lang="en" style="display: none;">City Bikes</span></div>
+                        </li>
+                        <li>
+                            <div href="#"><i class="fas fa-wheelchair"></i> <span data-lang="es">Scooters
                                     Movilidad</span><span data-lang="en" style="display: none;">Mobility
-                                    Scooters</span></a></li>
-                        <li><a href="#"><i class="fas fa-truck"></i> <span data-lang="es">Recogida Gratuita</span><span
-                                    data-lang="en" style="display: none;">Free Pickup</span></a></li>
-                        <li><a href="#"><i class="fas fa-tools"></i> <span data-lang="es">Asistencia 24/7</span><span
-                                    data-lang="en" style="display: none;">24/7 Assistance</span></a></li>
-                        <li><a href="#"><i class="fas fa-map-marked-alt"></i> <span data-lang="es">Rutas
-                                    Guiadas</span><span data-lang="en" style="display: none;">Guided Routes</span></a>
+                                    Scooters</span></div>
+                        </li>
+                        <li>
+                            <div href="#"><i class="fas fa-truck"></i> <span data-lang="es">Recogida
+                                    Gratuita</span><span data-lang="en" style="display: none;">Free Pickup</span></div>
+                        </li>
+                        <li>
+                            <div href="#"><i class="fas fa-tools"></i> <span data-lang="es">Asistencia 24/7</span><span
+                                    data-lang="en" style="display: none;">24/7 Assistance</span></div>
+                        </li>
+                        <li>
+                            <div href="#"><i class="fas fa-map-marked-alt"></i> <span data-lang="es">Rutas
+                                    Guiadas</span><span data-lang="en" style="display: none;">Guided Routes</span></div>
                         </li>
                     </ul>
                 </div>
@@ -2038,9 +2239,9 @@
                     <h3 data-lang="en" style="display: none;">Contact Us</h3>
                     <p><i class="fas fa-map-marker-alt"></i> Calle Gramillo, C. C Matagorda Local 66 y 79, 35519 Tías,
                         Las Palmas</p>
-                    <p><i class="fas fa-phone-alt"></i> +34 928 123 456</p>
-                    <p><i class="fab fa-whatsapp"></i> +34 612 345 678</p>
-                    <p><i class="far fa-envelope"></i> info@biosferarentalbike.com</p>
+                    <p><i class="fas fa-phone-alt"></i> +34 628 514 368</p>
+                    <p><i class="fab fa-whatsapp"></i> +34 692 035 563</p>
+                    <p><i class="far fa-envelope"></i> biosferabikerental@gmail.com</p>
                 </div>
             </div>
             <div class="copyright">
@@ -2232,9 +2433,55 @@
 
         form.addEventListener('submit', function (e) {
             e.preventDefault();
-            alert(document.querySelector('[data-lang="es"]').style.display !== 'none' ?
-                '¡Gracias por tu mensaje! Te contactaremos pronto.' :
-                'Thank you for your message! We will contact you soon.');
+
+            // Obtener los valores del formulario
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value || document.getElementById('message-en').value;
+
+            // Verificar si estamos en español o inglés
+            const isSpanish = document.querySelector('[data-lang="es"]').style.display !== 'none';
+
+            // Crear el mensaje para WhatsApp
+            let whatsappMessage = '';
+
+            if (isSpanish) {
+                whatsappMessage = `Hola, me gustaría solicitar información/reserva en Biosfera Rental Bike:%0A%0A` +
+                    `*Nombre:* ${name}%0A` +
+                    `*Email:* ${email}%0A` +
+                    `*Teléfono:* ${phone}%0A` +
+                    `*Fechas de alquiler:* ${startDate} - ${endDate}%0A` +
+                    `*Servicio de interés:* ${service}%0A` +
+                    `*Mensaje:* ${message}`;
+            } else {
+                whatsappMessage = `Hello, I would like to request information/booking at Biosfera Rental Bike:%0A%0A` +
+                    `*Name:* ${name}%0A` +
+                    `*Email:* ${email}%0A` +
+                    `*Phone:* ${phone}%0A` +
+                    `*Rental dates:* ${startDate} - ${endDate}%0A` +
+                    `*Service of interest:* ${service}%0A` +
+                    `*Message:* ${message}`;
+            }
+
+            // Número de WhatsApp de la empresa
+            const whatsappNumber = '+34689074945';
+
+            // Crear el enlace de WhatsApp
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+
+            // Abrir WhatsApp en una nueva ventana/pestaña
+            window.open(whatsappUrl, '_blank');
+
+            // Mostrar mensaje de confirmación
+            alert(isSpanish ?
+                '¡Gracias por tu mensaje! Serás redirigido a WhatsApp para completar tu solicitud.' :
+                'Thank you for your message! You will be redirected to WhatsApp to complete your request.');
+
+            // Opcional: Limpiar el formulario después del envío
             form.reset();
         });
 
@@ -2356,9 +2603,9 @@ PROMOCIONES Y DESCUENTOS:
 • Promociones para residentes de Lanzarote
 
 INFORMACIÓN DE CONTACTO:
-• Teléfono fijo: +34 928 123 456
-• WhatsApp: +34 612 345 678
-• Email: info@biosferarentalbike.com
+• Teléfono fijo: +34 628 514 368
+• WhatsApp: +34 692 035 563
+• Email: biosferabikerental@gmail.com
 • Redes Sociales: @BiosferaRentalBike (Instagram, Facebook)
 
 ZONAS DE COBERTURA:
@@ -2385,7 +2632,7 @@ INSTRUCCIONES DE RESPUESTA:
 - Menciona que estamos en PUERTO DEL CARMEN, LANZAROTE
 - Para preguntas específicas o reservas, deriva al teléfono/WhatsApp
 - Usa emojis moderadamente para hacer la conversación más amigable 🚲✨
-- Si no sabes algo específico, sugiere contactar por teléfono: +34 928 123 456
+- Si no sabes algo específico, sugiere contactar por teléfono: +34 628 514 368
 
 RECUERDA: Somos la opción preferida en Lanzarote con más de 10 años de experiencia, ofreciendo servicio personalizado y equipos en perfecto estado.`,
 
@@ -2441,9 +2688,9 @@ PROMOTIONS AND DISCOUNTS:
 • Promotions for Lanzarote residents
 
 CONTACT INFORMATION:
-• Landline: +34 928 123 456
-• WhatsApp: +34 612 345 678
-• Email: info@biosferarentalbike.com
+• Landline: +34 628 514 368
+• WhatsApp: +34 692 035 563
+• Email: biosferabikerental@gmail.com
 • Social Media: @BiosferaRentalBike (Instagram, Facebook)
 
 COVERAGE AREAS:
@@ -2470,7 +2717,7 @@ RESPONSE INSTRUCTIONS:
 - Mention that we are in PUERTO DEL CARMEN, LANZAROTE
 - For specific questions or bookings, refer to phone/WhatsApp
 - Use emojis moderately to make the conversation friendlier 🚲✨
-- If you don't know something specific, suggest contacting by phone: +34 928 123 456
+- If you don't know something specific, suggest contacting by phone: +34 628 514 368
 
 REMEMBER: We are the preferred choice in Lanzarote with over 10 years of experience, offering personalized service and equipment in perfect condition.`
         };
@@ -2580,8 +2827,8 @@ REMEMBER: We are the preferred choice in Lanzarote with over 10 years of experie
 
                     // Mostrar mensaje de error
                     const errorMessage = currentLanguage === 'es'
-                        ? 'Lo siento, ha ocurrido un error al procesar tu solicitud. Por favor, intenta de nuevo más tarde o contacta a nuestro teléfono: +34 928 123 456.'
-                        : 'Sorry, an error occurred while processing your request. Please try again later or contact our phone: +34 928 123 456.';
+                        ? 'Lo siento, ha ocurrido un error al procesar tu solicitud. Por favor, intenta de nuevo más tarde o contacta a nuestro teléfono: +34 628 514 368.'
+                        : 'Sorry, an error occurred while processing your request. Please try again later or contact our phone: +34 628 514 368.';
 
                     addMessage(errorMessage, 'bot');
                     console.error('Error:', error);
@@ -2683,10 +2930,17 @@ REMEMBER: We are the preferred choice in Lanzarote with over 10 years of experie
         };
 
         // Abrir modal del calendario
-        openCalendarBtn.addEventListener('click', () => {
+        function openCalendar() {
             calendarModal.style.display = 'flex';
             renderCalendar();
-        });
+        }
+
+        // Event listeners para abrir el calendario
+        openCalendarBtn.addEventListener('click', openCalendar);
+        
+        // Agregar event listeners a los inputs de fecha
+        startDateInput.addEventListener('click', openCalendar);
+        endDateInput.addEventListener('click', openCalendar);
 
         // Cerrar modal del calendario
         cancelSelectionBtn.addEventListener('click', () => {
@@ -2851,7 +3105,6 @@ REMEMBER: We are the preferred choice in Lanzarote with over 10 years of experie
 
         // Inicializar el calendario
         renderCalendar();
-
     </script>
 </body>
 
