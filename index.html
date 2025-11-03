@@ -401,7 +401,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: 50% 85%; 
+            object-position: 50% 85%;
             transition: transform 0.5s;
         }
 
@@ -636,6 +636,105 @@
 
         .faq-item.active .faq-question i {
             transform: rotate(180deg);
+        }
+
+        /* Routes Section */
+        .routes {
+            padding: clamp(50px, 10vw, 80px) 0;
+            background-color: var(--white);
+        }
+
+        .routes-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .route-slider {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .route-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .route-slide {
+            min-width: 100%;
+            padding: 0 10px;
+        }
+
+        .route-card {
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        .route-image {
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .route-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .route-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .route-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
+        }
+
+        .route-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .route-info p {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+            color: var(--dark-blue);
+        }
+
+        .route-info i {
+            color: var(--primary-yellow);
+        }
+
+        .route-content p:last-of-type {
+            flex-grow: 1;
+        }
+
+        /* Responsive adjustments for routes */
+        @media (max-width: 768px) {
+            .route-info {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .route-info p {
+                font-size: 0.85rem;
+            }
         }
 
         /* Contact Section */
@@ -1387,7 +1486,7 @@
                 <h2 data-lang="es">Alquiler de Bicicletas en Lanzarote</h2>
                 <h2 data-lang="en" style="display: none;">Bike Rental in Lanzarote</h2>
                 <p data-lang="es">Disfruta de Lanzarote de forma ecológica y saludable con nuestras bicicletas y
-                    scooters de movilidad. Recogida y entrega en la tienda</p>
+                    scooters de movilidad. Recogida y entrega en la tienda.</p>
                 <p data-lang="en" style="display: none;">Enjoy Lanzarote in an eco-friendly and healthy way with our
                     bikes and mobility scooters. Free pick-up and delivery across the island.</p>
                 <div class="hero-buttons">
@@ -1439,8 +1538,7 @@
                     </div>
                 </div>
                 <div class="about-image">
-                    <img src="/images/tienda.PNG" width="560" height="373"
-                        alt="Biosfera Rental Bike">
+                    <img src="/images/tienda.PNG" width="560" height="373" alt="Biosfera Rental Bike">
                 </div>
             </div>
         </div>
@@ -1565,9 +1663,8 @@
             <div class="vehicles-grid">
                 <!-- Scooter Eléctrico -->
                 <div class="vehicle-card">
-                    <div class="vehicle-image">
-                        <img src="/images/scooter.png"
-                            alt="Scooter Eléctrico">
+                    <div id="scooter-image" class="vehicle-image">
+                        <img src="/images/scooter.png" alt="Scooter Eléctrico">
                     </div>
                     <div class="vehicle-content">
                         <h3 data-lang="es">Scooter Eléctrico</h3>
@@ -1592,8 +1689,7 @@
                 <!-- Mobility Scooter -->
                 <div class="vehicle-card">
                     <div class="vehicle-image">
-                        <img src="/images/mobility-scooter.png"
-                            alt="Mobility Scooter">
+                        <img src="/images/mobility-scooter.png" alt="Mobility Scooter">
                     </div>
                     <div class="vehicle-content">
                         <h3 data-lang="es">Mobility Scooter</h3>
@@ -1618,8 +1714,7 @@
                 <!-- Tándem -->
                 <div class="vehicle-card">
                     <div class="vehicle-image">
-                        <img src="images/tandem.png"
-                            alt="Tándem">
+                        <img src="images/tandem.png" alt="Tándem">
                     </div>
                     <div class="vehicle-content">
                         <h3 data-lang="es">Tándem</h3>
@@ -1644,8 +1739,7 @@
                 <!-- Bicicleta Normal -->
                 <div class="vehicle-card">
                     <div class="vehicle-image">
-                        <img src="images/bicicleta-normal.png"
-                            alt="Bicicleta Normal">
+                        <img src="images/bicicleta-normal.png" alt="Bicicleta Normal">
                     </div>
                     <div class="vehicle-content">
                         <h3 data-lang="es">Bicicleta Normal</h3>
@@ -1671,8 +1765,7 @@
                 <!-- Bicicleta de Montaña -->
                 <div class="vehicle-card">
                     <div class="vehicle-image">
-                        <img src="images/bicicleta-de-montana.png"
-                            alt="Bicicleta de Montaña">
+                        <img src="images/bicicleta-de-montana.png" alt="Bicicleta de Montaña">
                     </div>
                     <div class="vehicle-content">
                         <h3 data-lang="es">Bicicleta de Montaña</h3>
@@ -1698,8 +1791,7 @@
                 <!-- Bicicleta Eléctrica -->
                 <div class="vehicle-card">
                     <div class="vehicle-image">
-                        <img src="images/bicicleta-electrica.png"
-                            alt="Bicicleta Eléctrica">
+                        <img src="images/bicicleta-electrica.png" alt="Bicicleta Eléctrica">
                     </div>
                     <div class="vehicle-content">
                         <h3 data-lang="es">Bicicleta Eléctrica</h3>
@@ -1725,14 +1817,13 @@
                 <!-- Carritos -->
                 <div class="vehicle-card">
                     <div class="vehicle-image">
-                        <img src="images/carrito.png"
-                            alt="Carritos">
+                        <img src="images/carrito.png" alt="Carritos">
                     </div>
                     <div class="vehicle-content">
                         <h3 data-lang="es">Carritos</h3>
                         <h3 data-lang="en" style="display: none;">Carts</h3>
-                        <p data-lang="es">Ideal para transportar carga o pasajeros adicionales.</p>
-                        <p data-lang="en" style="display: none;">Ideal for transporting cargo or additional passengers.
+                        <p data-lang="es">Viaja con estilo y comodidad en ocasiones especiales.</p>
+                        <p data-lang="en" style="display: none;">Travel in style and comfort for special occasions.
                         </p>
                         <ul class="vehicle-features">
                             <li><i class="fas fa-check"></i> <span data-lang="es">Capacidad de carga</span><span
@@ -1753,14 +1844,14 @@
                 <!-- Limusina -->
                 <div class="vehicle-card">
                     <div class="vehicle-image">
-                        <img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="Limusina">
+                        <img src="/images/limusina.png" alt="Limusina">
                     </div>
                     <div class="vehicle-content">
                         <h3 data-lang="es">Limusina</h3>
                         <h3 data-lang="en" style="display: none;">Limousine</h3>
-                        <p data-lang="es">Viaja con estilo y comodidad en ocasiones especiales.</p>
-                        <p data-lang="en" style="display: none;">Travel in style and comfort for special occasions.</p>
+                        <p data-lang="es">Ideal para transportar carga o pasajeros adicionales.</p>
+                        <p data-lang="en" style="display: none;">Ideal for transporting cargo or additional passengers.
+                        </p>
                         <ul class="vehicle-features">
                             <li><i class="fas fa-check"></i> <span data-lang="es">Amplio espacio interior</span><span
                                     data-lang="en" style="display: none;">Spacious interior</span></li>
@@ -1839,8 +1930,10 @@
                         <div class="testimonial-slide">
                             <div class="testimonial-card">
                                 <div class="testimonial-text">
-                                    <p data-lang="es">Un negocio muy útil; me repararon la rueda delantera pinchada de la bicicleta
-                                        muy rápidamente, lo que me permitió recorrer gran parte de la costa sur ese mismo día.
+                                    <p data-lang="es">Un negocio muy útil; me repararon la rueda delantera pinchada de
+                                        la bicicleta
+                                        muy rápidamente, lo que me permitió recorrer gran parte de la costa sur ese
+                                        mismo día.
                                         Unos chicos estupendos, un servicio excelente.</p>
                                     <p data-lang="en" style="display: none;">Very helpful business, my punctured front
                                         wheel on my bike was very quickly repaired which allowed me to visit most of the
@@ -1859,9 +1952,12 @@
                         <div class="testimonial-slide">
                             <div class="testimonial-card">
                                 <div class="testimonial-text">
-                                    <p data-lang="es">Un negocio familiar fantástico; tienen otros dos locales a la vuelta de la esquina.
-                                        Conocí al dueño, a su hijo y a su hija, y fueron todos encantadores. Muy amables y acogedores.
-                                        Un día alquilé una bicicleta y otro día un patinete eléctrico. Siempre volveré cuando esté en Lanzarote.</p>
+                                    <p data-lang="es">Un negocio familiar fantástico; tienen otros dos locales a la
+                                        vuelta de la esquina.
+                                        Conocí al dueño, a su hijo y a su hija, y fueron todos encantadores. Muy amables
+                                        y acogedores.
+                                        Un día alquilé una bicicleta y otro día un patinete eléctrico. Siempre volveré
+                                        cuando esté en Lanzarote.</p>
                                     <p data-lang="en" style="display: none;">Amazing Family run business, they have
                                         another 2 round the corner. I met the owner, son and daughter they were all a
                                         delight. So friendly and welcoming. I had a bike one day and an electric scooter
@@ -1880,7 +1976,8 @@
                         <div class="testimonial-slide">
                             <div class="testimonial-card">
                                 <div class="testimonial-text">
-                                    <p data-lang="es">Muy bien. Bicicletas estupendas a un precio razonable. Las dos empleadas fueron muy 
+                                    <p data-lang="es">Muy bien. Bicicletas estupendas a un precio razonable. Las dos
+                                        empleadas fueron muy
                                         amables y serviciales. Un placer recorrer la isla en bicicleta.</p>
                                     <p data-lang="en" style="display: none;">Very good. Nice bikes, reasonably priced.
                                         The two women were very amenable and helpful members of staff. Lovely to ride
@@ -1979,7 +2076,8 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p data-lang="es">El precio incluye: bicicleta en perfecto estado, casco, candado y asistencia en
+                        <p data-lang="es">El precio incluye: bicicleta en perfecto estado, casco, candado y asistencia
+                            en
                             carretera 24/7. Los accesorios adicionales
                             como sillas para niños tienen un coste extra.</p>
                         <p data-lang="en" style="display: none;">The price includes: bike in perfect condition, helmet,
@@ -2029,6 +2127,175 @@
                         <p data-lang="en" style="display: none;">Yes, we offer progressive discounts for rentals of one
                             week or more. Check our special rates for long stays by contacting us.</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rutas Section -->
+    <section class="routes" id="routes">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-lang="es">Rutas desde Matagorda</h2>
+                <h2 data-lang="en" style="display: none;">Routes from Matagorda</h2>
+                <p data-lang="es">Descubre los mejores recorridos en bicicleta que parten desde nuestra ubicación en
+                    Matagorda</p>
+                <p data-lang="en" style="display: none;">Discover the best bike routes starting from our location in
+                    Matagorda</p>
+            </div>
+            <div class="routes-container">
+                <div class="route-slider">
+                    <div class="route-track">
+                        <!-- Ruta 1: Matagorda → Arrecife -->
+                        <div class="route-slide">
+                            <div class="route-card">
+                                <div class="route-image">
+                                    <img src="/images/rutas/rutaArrecife.PNG" alt="Ruta Matagorda a Arrecife">
+                                </div>
+                                <div class="route-content">
+                                    <h3 data-lang="es">Matagorda → Arrecife</h3>
+                                    <h3 data-lang="en" style="display: none;">Matagorda → Arrecife</h3>
+                                    <div class="route-info">
+                                        <p><i class="fas fa-route"></i> <span data-lang="es">Distancia:</span><span
+                                                data-lang="en" style="display: none;">Distance:</span> 9,2 km</p>
+                                        <p><i class="fas fa-clock"></i> <span data-lang="es">Duración:</span><span
+                                                data-lang="en" style="display: none;">Duration:</span> 28-36 min</p>
+                                        <p><i class="fas fa-mountain"></i> <span data-lang="es">Dificultad:</span><span
+                                                data-lang="en" style="display: none;">Difficulty:</span> <span
+                                                data-lang="es">Fácil</span><span data-lang="en"
+                                                style="display: none;">Easy</span></p>
+                                    </div>
+                                    <p data-lang="es">Un tranquilo paseo costero hasta la capital de Lanzarote. Disfruta
+                                        de vistas al mar y visita el Castillo de San Gabriel y el Charco de San Ginés.
+                                    </p>
+                                    <p data-lang="en" style="display: none;">A peaceful coastal ride to Lanzarote's
+                                        capital. Enjoy sea views and visit San Gabriel Castle and Charco de San Ginés.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ruta 2: Matagorda → Puerto del Carmen -->
+                        <div class="route-slide">
+                            <div class="route-card">
+                                <div class="route-image">
+                                    <img src="/images/rutas/rutaPuertoDelCarmen.PNG"
+                                        alt="Ruta Matagorda a Puerto del Carmen">
+                                </div>
+                                <div class="route-content">
+                                    <h3 data-lang="es">Matagorda → Puerto del Carmen</h3>
+                                    <h3 data-lang="en" style="display: none;">Matagorda → Puerto del Carmen</h3>
+                                    <div class="route-info">
+                                        <p><i class="fas fa-route"></i> <span data-lang="es">Distancia:</span><span
+                                                data-lang="en" style="display: none;">Distance:</span> 6,1 km</p>
+                                        <p><i class="fas fa-clock"></i> <span data-lang="es">Duración:</span><span
+                                                data-lang="en" style="display: none;">Duration:</span> 20-25 min</p>
+                                        <p><i class="fas fa-mountain"></i> <span data-lang="es">Dificultad:</span><span
+                                                data-lang="en" style="display: none;">Difficulty:</span> <span
+                                                data-lang="es">Muy Fácil</span><span data-lang="en"
+                                                style="display: none;">Very Easy</span></p>
+                                    </div>
+                                    <p data-lang="es">La ruta más corta y popular. Recorre el paseo marítimo hasta el
+                                        corazón turístico de Puerto del Carmen con sus tiendas, restaurantes y playas.
+                                    </p>
+                                    <p data-lang="en" style="display: none;">The shortest and most popular route. Ride
+                                        along the promenade to the tourist heart of Puerto del Carmen with its shops,
+                                        restaurants and beaches.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ruta 3: Matagorda → Playa Quemada -->
+                        <div class="route-slide">
+                            <div class="route-card">
+                                <div class="route-image">
+                                    <img src="/images/rutas/rutaPlayaQuemada.PNG" alt="Ruta Matagorda a Playa Quemada">
+                                </div>
+                                <div class="route-content">
+                                    <h3 data-lang="es">Matagorda → Playa Quemada</h3>
+                                    <h3 data-lang="en" style="display: none;">Matagorda → Playa Quemada</h3>
+                                    <div class="route-info">
+                                        <p><i class="fas fa-route"></i> <span data-lang="es">Distancia:</span><span
+                                                data-lang="en" style="display: none;">Distance:</span> 17,4 km</p>
+                                        <p><i class="fas fa-clock"></i> <span data-lang="es">Duración:</span><span
+                                                data-lang="en" style="display: none;">Duration:</span> 120-140 min</p>
+                                        <p><i class="fas fa-mountain"></i> <span data-lang="es">Dificultad:</span><span
+                                                data-lang="en" style="display: none;">Difficulty:</span> <span
+                                                data-lang="es">Media-Alta</span><span data-lang="en"
+                                                style="display: none;">Medium-High</span></p>
+                                    </div>
+                                    <p data-lang="es">Una ruta con desniveles que te recompensa con la espectacular
+                                        Playa Quemada. Ideal para ciclistas con experiencia que buscan un desafío.</p>
+                                    <p data-lang="en" style="display: none;">A route with elevation changes that rewards
+                                        you with the spectacular Playa Quemada. Ideal for experienced cyclists looking
+                                        for a challenge.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ruta 4: Matagorda → Costa Teguise -->
+                        <div class="route-slide">
+                            <div class="route-card">
+                                <div class="route-image">
+                                    <img src="/images/rutas/rutaCostaTeguise.PNG" alt="Ruta Matagorda a Costa Teguise">
+                                </div>
+                                <div class="route-content">
+                                    <h3 data-lang="es">Matagorda → Costa Teguise</h3>
+                                    <h3 data-lang="en" style="display: none;">Matagorda → Costa Teguise</h3>
+                                    <div class="route-info">
+                                        <p><i class="fas fa-route"></i> <span data-lang="es">Distancia:</span><span
+                                                data-lang="en" style="display: none;">Distance:</span> 16,9 km</p>
+                                        <p><i class="fas fa-clock"></i> <span data-lang="es">Duración:</span><span
+                                                data-lang="en" style="display: none;">Duration:</span> 53-60 min</p>
+                                        <p><i class="fas fa-mountain"></i> <span data-lang="es">Dificultad:</span><span
+                                                data-lang="en" style="display: none;">Difficulty:</span> <span
+                                                data-lang="es">Media</span><span data-lang="en"
+                                                style="display: none;">Medium</span></p>
+                                    </div>
+                                    <p data-lang="es">Recorre la costa norte hasta este encantador resort turístico.
+                                        Disfruta de sus múltiples playas, campo de golf y ambiente relajado.</p>
+                                    <p data-lang="en" style="display: none;">Ride along the north coast to this charming
+                                        tourist resort. Enjoy its multiple beaches, golf course and relaxed atmosphere.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ruta 5: Matagorda → San Bartolomé -->
+                        <div class="route-slide">
+                            <div class="route-card">
+                                <div class="route-image">
+                                    <img src="/images/rutas/rutaSanBartolome.PNG" alt="Ruta Matagorda a San Bartolomé">
+                                </div>
+                                <div class="route-content">
+                                    <h3 data-lang="es">Matagorda → San Bartolomé</h3>
+                                    <h3 data-lang="en" style="display: none;">Matagorda → San Bartolomé</h3>
+                                    <div class="route-info">
+                                        <p><i class="fas fa-route"></i> <span data-lang="es">Distancia:</span><span
+                                                data-lang="en" style="display: none;">Distance:</span> 10,1 km</p>
+                                        <p><i class="fas fa-clock"></i> <span data-lang="es">Duración:</span><span
+                                                data-lang="en" style="display: none;">Duration:</span> 48-56 min</p>
+                                        <p><i class="fas fa-mountain"></i> <span data-lang="es">Dificultad:</span><span
+                                                data-lang="en" style="display: none;">Difficulty:</span> <span
+                                                data-lang="es">Media</span><span data-lang="en"
+                                                style="display: none;">Medium</span></p>
+                                    </div>
+                                    <p data-lang="es">Adéntrate en el interior de la isla para descubrir la auténtica
+                                        Lanzarote. Conoce la arquitectura tradicional y los viñedos de la zona.</p>
+                                    <p data-lang="en" style="display: none;">Venture into the island's interior to
+                                        discover authentic Lanzarote. Explore traditional architecture and local
+                                        vineyards.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-nav">
+                    <div class="slider-dot active"></div>
+                    <div class="slider-dot"></div>
+                    <div class="slider-dot"></div>
+                    <div class="slider-dot"></div>
+                    <div class="slider-dot"></div>
                 </div>
             </div>
         </div>
@@ -2092,10 +2359,13 @@
                                 <label data-lang="en" style="display: none;">Rental dates</label>
                                 <div class="date-range-container">
                                     <div class="date-inputs">
-                                        <input type="text" id="startDate" class="date-input" placeholder="Fecha inicio" readonly>
-                                        <input type="text" id="endDate" class="date-input" placeholder="Fecha fin" readonly>
+                                        <input type="text" id="startDate" class="date-input" placeholder="Fecha inicio"
+                                            readonly>
+                                        <input type="text" id="endDate" class="date-input" placeholder="Fecha fin"
+                                            readonly>
                                     </div>
-                                    <button type="button" id="openCalendar" class="btn" style="padding: 10px; font-size: 0.9rem;">
+                                    <button type="button" id="openCalendar" class="btn"
+                                        style="padding: 10px; font-size: 0.9rem;">
                                         <span data-lang="es">Seleccionar fechas</span>
                                         <span data-lang="en" style="display: none;">Select dates</span>
                                     </button>
@@ -2213,8 +2483,9 @@
                                     Scooters</span></div>
                         </li>
                         <li>
-                            <div href="#"><i class="fas fa-tools"></i> <span data-lang="es">Asistencia gratis</span><span
-                                    data-lang="en" style="display: none;">Free Assistance</span></div>
+                            <div href="#"><i class="fas fa-tools"></i> <span data-lang="es">Asistencia
+                                    gratis</span><span data-lang="en" style="display: none;">Free Assistance</span>
+                            </div>
                         </li>
                         <li>
                             <div href="#"><i class="fas fa-map-marked-alt"></i> <span data-lang="es">Rutas
@@ -2379,31 +2650,137 @@
         });
 
         // Testimonials Slider
-        const track = document.querySelector('.testimonial-track');
-        const slides = Array.from(track.children);
-        const dots = document.querySelectorAll('.slider-dot');
-        let currentSlide = 0;
+        const testimonialTrack = document.querySelector('.testimonial-track');
+        const testimonialSlides = Array.from(testimonialTrack.children);
+        const testimonialDots = document.querySelectorAll('.testimonials .slider-dot');
+        let currentTestimonialSlide = 0;
+        let isTestimonialDragging = false;
+        let testimonialStartPos = 0;
+        let testimonialCurrentTranslate = 0;
+        let testimonialPrevTranslate = 0;
+        let testimonialAnimationID = 0;
 
-        function updateSlider() {
-            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+        // Inicializar eventos de deslizamiento para testimonios
+        function initTestimonialSlider() {
+            testimonialTrack.addEventListener('mousedown', testimonialDragStart);
+            testimonialTrack.addEventListener('touchstart', testimonialDragStart);
+            testimonialTrack.addEventListener('mouseup', testimonialDragEnd);
+            testimonialTrack.addEventListener('touchend', testimonialDragEnd);
+            testimonialTrack.addEventListener('mousemove', testimonialDrag);
+            testimonialTrack.addEventListener('touchmove', testimonialDrag);
 
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSlide);
+            // Prevenir comportamiento por defecto de arrastrar
+            testimonialTrack.addEventListener('dragstart', (e) => {
+                e.preventDefault();
             });
         }
 
-        dots.forEach((dot, index) => {
+        function testimonialDragStart(event) {
+            if (event.type === 'touchstart') {
+                testimonialStartPos = event.touches[0].clientX;
+            } else {
+                testimonialStartPos = event.clientX;
+                event.preventDefault();
+            }
+
+            isTestimonialDragging = true;
+            testimonialAnimationID = requestAnimationFrame(testimonialAnimation);
+            testimonialTrack.style.cursor = 'grabbing';
+            testimonialTrack.style.transition = 'none';
+        }
+
+        function testimonialDrag(event) {
+            if (!isTestimonialDragging) return;
+
+            let currentPosition = 0;
+            if (event.type === 'touchmove') {
+                currentPosition = event.touches[0].clientX;
+            } else {
+                currentPosition = event.clientX;
+            }
+
+            testimonialCurrentTranslate = testimonialPrevTranslate + currentPosition - testimonialStartPos;
+        }
+
+        function testimonialDragEnd() {
+            if (!isTestimonialDragging) return;
+
+            isTestimonialDragging = false;
+            cancelAnimationFrame(testimonialAnimationID);
+            testimonialTrack.style.cursor = 'grab';
+
+            const movedBy = testimonialCurrentTranslate - testimonialPrevTranslate;
+            const slideWidth = testimonialTrack.clientWidth;
+
+            // Si el desplazamiento es significativo, cambiar de slide
+            if (movedBy < -100 && currentTestimonialSlide < testimonialSlides.length - 1) {
+                currentTestimonialSlide += 1;
+            }
+
+            if (movedBy > 100 && currentTestimonialSlide > 0) {
+                currentTestimonialSlide -= 1;
+            }
+
+            setTestimonialSliderPosition();
+        }
+
+        function testimonialAnimation() {
+            setTestimonialSliderPosition();
+            if (isTestimonialDragging) requestAnimationFrame(testimonialAnimation);
+        }
+
+        function setTestimonialSliderPosition() {
+            if (isTestimonialDragging) {
+                testimonialTrack.style.transform = `translateX(${testimonialCurrentTranslate}px)`;
+            } else {
+                testimonialTrack.style.transition = 'transform 0.5s ease';
+                testimonialTrack.style.transform = `translateX(-${currentTestimonialSlide * 100}%)`;
+                testimonialPrevTranslate = -currentTestimonialSlide * testimonialTrack.clientWidth;
+                testimonialCurrentTranslate = testimonialPrevTranslate;
+            }
+
+            updateTestimonialDots();
+        }
+
+        function updateTestimonialDots() {
+            testimonialDots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentTestimonialSlide);
+            });
+        }
+
+        // Event listeners para los dots de testimonios
+        testimonialDots.forEach((dot, index) => {
             dot.addEventListener('click', () => {
-                currentSlide = index;
-                updateSlider();
+                currentTestimonialSlide = index;
+                setTestimonialSliderPosition();
             });
         });
 
-        // Auto slide
-        setInterval(() => {
-            currentSlide = (currentSlide + 1) % slides.length;
-            updateSlider();
+        // Auto slide para testimonios (solo si no está siendo arrastrado)
+        let testimonialAutoSlideInterval = setInterval(() => {
+            if (!isTestimonialDragging) {
+                currentTestimonialSlide = (currentTestimonialSlide + 1) % testimonialSlides.length;
+                setTestimonialSliderPosition();
+            }
         }, 5000);
+
+        // Pausar auto-slide cuando el ratón está sobre el slider de testimonios
+        testimonialTrack.addEventListener('mouseenter', () => {
+            clearInterval(testimonialAutoSlideInterval);
+        });
+
+        // Reanudar auto-slide cuando el ratón sale del slider de testimonios
+        testimonialTrack.addEventListener('mouseleave', () => {
+            testimonialAutoSlideInterval = setInterval(() => {
+                if (!isTestimonialDragging) {
+                    currentTestimonialSlide = (currentTestimonialSlide + 1) % testimonialSlides.length;
+                    setTestimonialSliderPosition();
+                }
+            }, 5000);
+        });
+
+        // Inicializar el slider de testimonios
+        initTestimonialSlider();
 
         // FAQ Accordion
         const faqItems = document.querySelectorAll('.faq-item');
@@ -2415,6 +2792,140 @@
                 item.classList.toggle('active');
             });
         });
+
+        // Routes Slider
+        const routeTrack = document.querySelector('.route-track');
+        const routeSlides = Array.from(routeTrack.children);
+        const routeDots = document.querySelectorAll('.routes .slider-dot');
+        let currentRouteSlide = 0;
+        let isDragging = false;
+        let startPos = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+        let animationID = 0;
+
+        // Inicializar eventos de deslizamiento
+        function initRouteSlider() {
+            routeTrack.addEventListener('mousedown', dragStart);
+            routeTrack.addEventListener('touchstart', dragStart);
+            routeTrack.addEventListener('mouseup', dragEnd);
+            routeTrack.addEventListener('touchend', dragEnd);
+            routeTrack.addEventListener('mousemove', drag);
+            routeTrack.addEventListener('touchmove', drag);
+
+            // Prevenir comportamiento por defecto de arrastrar imágenes
+            routeTrack.addEventListener('dragstart', (e) => {
+                e.preventDefault();
+            });
+        }
+
+        function dragStart(event) {
+            if (event.type === 'touchstart') {
+                startPos = event.touches[0].clientX;
+            } else {
+                startPos = event.clientX;
+                event.preventDefault();
+            }
+
+            isDragging = true;
+            animationID = requestAnimationFrame(animation);
+            routeTrack.style.cursor = 'grabbing';
+            routeTrack.style.transition = 'none';
+        }
+
+        function drag(event) {
+            if (!isDragging) return;
+
+            let currentPosition = 0;
+            if (event.type === 'touchmove') {
+                currentPosition = event.touches[0].clientX;
+            } else {
+                currentPosition = event.clientX;
+            }
+
+            const currentSlideWidth = routeTrack.clientWidth;
+            currentTranslate = prevTranslate + currentPosition - startPos;
+        }
+
+        function dragEnd() {
+            if (!isDragging) return;
+
+            isDragging = false;
+            cancelAnimationFrame(animationID);
+            routeTrack.style.cursor = 'grab';
+
+            const movedBy = currentTranslate - prevTranslate;
+            const slideWidth = routeTrack.clientWidth;
+
+            // Si el desplazamiento es significativo, cambiar de slide
+            if (movedBy < -100 && currentRouteSlide < routeSlides.length - 1) {
+                currentRouteSlide += 1;
+            }
+
+            if (movedBy > 100 && currentRouteSlide > 0) {
+                currentRouteSlide -= 1;
+            }
+
+            setRouteSliderPosition();
+        }
+
+        function animation() {
+            setRouteSliderPosition();
+            if (isDragging) requestAnimationFrame(animation);
+        }
+
+        function setRouteSliderPosition() {
+            if (isDragging) {
+                routeTrack.style.transform = `translateX(${currentTranslate}px)`;
+            } else {
+                routeTrack.style.transition = 'transform 0.5s ease';
+                routeTrack.style.transform = `translateX(-${currentRouteSlide * 100}%)`;
+                prevTranslate = -currentRouteSlide * routeTrack.clientWidth;
+                currentTranslate = prevTranslate;
+            }
+
+            updateRouteDots();
+        }
+
+        function updateRouteDots() {
+            routeDots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentRouteSlide);
+            });
+        }
+
+        // Event listeners para los dots
+        routeDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentRouteSlide = index;
+                setRouteSliderPosition();
+            });
+        });
+
+        // Auto slide para rutas (solo si no está siendo arrastrado)
+        let autoSlideInterval = setInterval(() => {
+            if (!isDragging) {
+                currentRouteSlide = (currentRouteSlide + 1) % routeSlides.length;
+                setRouteSliderPosition();
+            }
+        }, 8000);
+
+        // Pausar auto-slide cuando el ratón está sobre el slider
+        routeTrack.addEventListener('mouseenter', () => {
+            clearInterval(autoSlideInterval);
+        });
+
+        // Reanudar auto-slide cuando el ratón sale del slider
+        routeTrack.addEventListener('mouseleave', () => {
+            autoSlideInterval = setInterval(() => {
+                if (!isDragging) {
+                    currentRouteSlide = (currentRouteSlide + 1) % routeSlides.length;
+                    setRouteSliderPosition();
+                }
+            }, 8000);
+        });
+
+        // Inicializar el slider de rutas
+        initRouteSlider();
 
         // Form Submission
         const form = document.getElementById('reservationForm');
@@ -2925,7 +3436,7 @@ REMEMBER: We are the preferred choice in Lanzarote with over 10 years of experie
 
         // Event listeners para abrir el calendario
         openCalendarBtn.addEventListener('click', openCalendar);
-        
+
         // Agregar event listeners a los inputs de fecha
         startDateInput.addEventListener('click', openCalendar);
         endDateInput.addEventListener('click', openCalendar);
