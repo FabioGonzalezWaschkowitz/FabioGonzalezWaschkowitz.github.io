@@ -5384,7 +5384,7 @@ RAPPEL: Nous sommes le choix privilégié à Lanzarote avec plus de 10 ans d'exp
         let tempStartDate = null;
         let tempEndDate = null;
 
-        // Nombres de meses y días en español, inglés, alemán y francés
+        // Nombres de meses y días
         const monthNames = {
             es: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
             en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
@@ -5401,39 +5401,33 @@ RAPPEL: Nous sommes le choix privilégié à Lanzarote avec plus de 10 ans d'exp
 
         // Función para verificar si una fecha está en el pasado
         function isDateInPast(date) {
-            const now = new Date();
-
-            // Si es el mismo día, verificar la hora
-            if (isSameDay(date, now)) {
-                const currentHour = now.getHours();
-                // Si es después de las 18:00, considerar el día como "pasado" para reservas
-                return currentHour >= 18;
-            }
-
-            // Para otros días, comparar solo la fecha
             const today = new Date();
             today.setHours(0, 0, 0, 0);
             return date < today;
         }
 
-        // Función para verificar si es el mismo día y después de las 18:00
-        function isTodayAfter6PM() {
-            const now = new Date();
-            const currentHour = now.getHours();
-            return currentHour >= 18;
+        // Función para verificar si es el mismo día
+        function isSameDay(date1, date2) {
+            return date1.getFullYear() === date2.getFullYear() &&
+                date1.getMonth() === date2.getMonth() &&
+                date1.getDate() === date2.getDate();
         }
 
-        // Función para obtener el mensaje de error según el idioma
-        function getTimeRestrictionMessage(language) {
-            if (language === 'es') {
-                return 'Las reservas para el mismo día solo están disponibles antes de las 18:00. Por favor, seleccione una fecha futura.';
-            } else if (language === 'en') {
-                return 'Same-day reservations are only available before 18:00. Please select a future date.';
-            } else if (language === 'de') {
-                return 'Reservierungen für denselben Tag sind nur vor 18:00 Uhr verfügbar. Bitte wählen Sie ein zukünftiges Datum.';
-            } else if (language === 'fr') {
-                return 'Les réservations pour le même jour ne sont disponibles qu\'avant 18h00. Veuillez sélectionner une date future.';
+        // Formatear fecha para mostrar
+        function formatDate(date) {
+            const currentLanguage = document.querySelector('.lang-btn.active').id.split('-')[1];
+            const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+
+            if (currentLanguage === 'es') {
+                return date.toLocaleDateString('es-ES', options);
+            } else if (currentLanguage === 'en') {
+                return date.toLocaleDateString('en-US', options);
+            } else if (currentLanguage === 'de') {
+                return date.toLocaleDateString('de-DE', options);
+            } else if (currentLanguage === 'fr') {
+                return date.toLocaleDateString('fr-FR', options);
             }
+            return date.toLocaleDateString('es-ES', options);
         }
 
         // Abrir modal del calendario
@@ -5444,8 +5438,6 @@ RAPPEL: Nous sommes le choix privilégié à Lanzarote avec plus de 10 ans d'exp
 
         // Event listeners para abrir el calendario
         openCalendarBtn.addEventListener('click', openCalendar);
-
-        // Agregar event listeners a los inputs de fecha
         startDateInput.addEventListener('click', openCalendar);
         endDateInput.addEventListener('click', openCalendar);
 
@@ -5459,31 +5451,21 @@ RAPPEL: Nous sommes le choix privilégié à Lanzarote avec plus de 10 ans d'exp
         // Confirmar selección de fechas
         confirmSelectionBtn.addEventListener('click', () => {
             if (tempStartDate && tempEndDate) {
-                // Validar que las fechas seleccionadas no estén en el pasado
-                const now = new Date();
+                // Validar que las fechas no estén en el pasado
                 const today = new Date();
                 today.setHours(0, 0, 0, 0);
 
-                // Verificar si la fecha de inicio es hoy después de las 18:00
-                if (isSameDay(tempStartDate, now) && isTodayAfter6PM()) {
-                    const currentLanguage = document.querySelector('.lang-btn.active').id.split('-')[1];
-                    const errorMessage = getTimeRestrictionMessage(currentLanguage);
-                    alert(errorMessage);
-                    return;
-                }
-
-                // Verificar si la fecha de inicio está en el pasado
                 if (tempStartDate < today) {
                     const currentLanguage = document.querySelector('.lang-btn.active').id.split('-')[1];
                     let errorMessage = '';
                     if (currentLanguage === 'es') {
-                        errorMessage = 'No se pueden seleccionar fechas anteriores al día actual.';
+                        errorMessage = 'No se pueden seleccionar fechas pasadas.';
                     } else if (currentLanguage === 'en') {
-                        errorMessage = 'Cannot select dates before today.';
+                        errorMessage = 'Cannot select past dates.';
                     } else if (currentLanguage === 'de') {
-                        errorMessage = 'Es können keine Daten vor dem heutigen Tag ausgewählt werden.';
+                        errorMessage = 'Vergangene Daten können nicht ausgewählt werden.';
                     } else if (currentLanguage === 'fr') {
-                        errorMessage = 'Impossible de sélectionner des dates antérieures à aujourd\'hui.';
+                        errorMessage = 'Impossible de sélectionner des dates passées.';
                     }
                     alert(errorMessage);
                     return;
@@ -5493,15 +5475,10 @@ RAPPEL: Nous sommes le choix privilégié à Lanzarote avec plus de 10 ans d'exp
                 selectedEndDate = tempEndDate;
 
                 // Formatear fechas para mostrar
-                const startFormatted = formatDate(selectedStartDate);
-                const endFormatted = formatDate(selectedEndDate);
-
-                startDateInput.value = startFormatted;
-                endDateInput.value = endFormatted;
+                startDateInput.value = formatDate(selectedStartDate);
+                endDateInput.value = formatDate(selectedEndDate);
 
                 calendarModal.style.display = 'none';
-
-                // Actualizar el cálculo de precio
                 updatePriceCalculation();
             }
         });
@@ -5517,12 +5494,11 @@ RAPPEL: Nous sommes le choix privilégié à Lanzarote avec plus de 10 ans d'exp
             renderCalendar();
         });
 
-        // Renderizar calendario
+        // Renderizar calendario CORREGIDO
         function renderCalendar() {
             const currentLanguage = document.querySelector('.lang-btn.active').id.split('-')[1];
             const year = currentDate.getFullYear();
             const month = currentDate.getMonth();
-            const now = new Date();
             const today = new Date();
             today.setHours(0, 0, 0, 0);
 
@@ -5540,17 +5516,17 @@ RAPPEL: Nous sommes le choix privilégié à Lanzarote avec plus de 10 ans d'exp
                 calendarGrid.appendChild(dayHeader);
             }
 
-            // Obtener primer día del mes y último día del mes
+            // Obtener primer y último día del mes
             const firstDay = new Date(year, month, 1);
             const lastDay = new Date(year, month + 1, 0);
 
-            // Obtener día de la semana del primer día (0 = Domingo, 1 = Lunes, etc.)
+            // Día de la semana del primer día (0 = Domingo)
             const firstDayIndex = firstDay.getDay();
 
-            // Obtener último día del mes anterior
+            // Días del mes anterior
             const prevMonthLastDay = new Date(year, month, 0).getDate();
 
-            // Añadir días del mes anterior
+            // Añadir días del mes anterior (siempre deshabilitados)
             for (let i = firstDayIndex - 1; i >= 0; i--) {
                 const day = document.createElement('div');
                 day.classList.add('calendar-day', 'disabled');
@@ -5563,114 +5539,90 @@ RAPPEL: Nous sommes le choix privilégié à Lanzarote avec plus de 10 ans d'exp
                 const day = document.createElement('div');
                 const date = new Date(year, month, i);
 
-                // Verificar si la fecha está en el pasado o es hoy después de las 18:00
-                const isPast = isDateInPast(date);
-
                 day.classList.add('calendar-day');
-                if (isPast) {
+                day.textContent = i;
+                day.dataset.date = date.toISOString().split('T')[0];
+
+                // Verificar si está en el pasado
+                if (date < today) {
                     day.classList.add('disabled');
                 }
 
-                day.textContent = i;
-                day.dataset.date = `${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
-
-                // Marcar si está en el rango seleccionado
+                // Marcar selección
+                if (tempStartDate && isSameDay(date, tempStartDate)) {
+                    day.classList.add('selected');
+                }
+                if (tempEndDate && isSameDay(date, tempEndDate)) {
+                    day.classList.add('selected');
+                }
                 if (tempStartDate && tempEndDate && date >= tempStartDate && date <= tempEndDate) {
                     day.classList.add('in-range');
                 }
 
-                // Marcar si es la fecha de inicio o fin
-                if (tempStartDate && isSameDay(date, tempStartDate)) {
-                    day.classList.add('selected');
+                // Event listener para días habilitados
+                if (!day.classList.contains('disabled')) {
+                    day.addEventListener('click', () => handleDateClick(date));
                 }
-
-                if (tempEndDate && isSameDay(date, tempEndDate)) {
-                    day.classList.add('selected');
-                }
-
-                // Manejar clic en día
-                day.addEventListener('click', () => {
-                    if (day.classList.contains('disabled')) return;
-
-                    // Verificar adicionalmente si la fecha está en el pasado
-                    if (isPast) {
-                        const currentLanguage = document.querySelector('.lang-btn.active').id.split('-')[1];
-                        const errorMessage = getTimeRestrictionMessage(currentLanguage);
-                        alert(errorMessage);
-                        return;
-                    }
-
-                    const clickedDate = new Date(year, month, i);
-
-                    if (!tempStartDate || (tempStartDate && tempEndDate)) {
-                        // Primera selección o reinicio
-                        tempStartDate = clickedDate;
-                        tempEndDate = null;
-                    } else if (clickedDate < tempStartDate) {
-                        // Si la fecha seleccionada es anterior a la fecha de inicio
-                        tempEndDate = tempStartDate;
-                        tempStartDate = clickedDate;
-                    } else {
-                        // Fecha de fin
-                        tempEndDate = clickedDate;
-                    }
-
-                    renderCalendar();
-                });
 
                 calendarGrid.appendChild(day);
             }
 
-            // Calcular cuántos días del próximo mes necesitamos mostrar
-            const totalCells = 42; // 6 filas de 7 días
+            // Calcular días del próximo mes necesarios
+            const totalCells = 42;
             const daysSoFar = firstDayIndex + lastDay.getDate();
             const nextMonthDays = totalCells - daysSoFar;
 
-            // Añadir días del próximo mes
+            // Añadir días del próximo mes (NO deshabilitados automáticamente)
             for (let i = 1; i <= nextMonthDays; i++) {
                 const day = document.createElement('div');
-                day.classList.add('calendar-day', 'disabled');
+                const nextMonth = month === 11 ? 0 : month + 1;
+                const nextYear = month === 11 ? year + 1 : year;
+                const date = new Date(nextYear, nextMonth, i);
+
+                day.classList.add('calendar-day');
                 day.textContent = i;
+                day.dataset.date = date.toISOString().split('T')[0];
+
+                // Solo deshabilitar si está en el pasado
+                if (date < today) {
+                    day.classList.add('disabled');
+                }
+
+                // Marcar selección
+                if (tempStartDate && isSameDay(date, tempStartDate)) {
+                    day.classList.add('selected');
+                }
+                if (tempEndDate && isSameDay(date, tempEndDate)) {
+                    day.classList.add('selected');
+                }
+                if (tempStartDate && tempEndDate && date >= tempStartDate && date <= tempEndDate) {
+                    day.classList.add('in-range');
+                }
+
+                // Event listener para días habilitados
+                if (!day.classList.contains('disabled')) {
+                    day.addEventListener('click', () => handleDateClick(date));
+                }
+
                 calendarGrid.appendChild(day);
             }
         }
 
-        // Función auxiliar para comparar días
-        function isSameDay(date1, date2) {
-            return date1.getFullYear() === date2.getFullYear() &&
-                date1.getMonth() === date2.getMonth() &&
-                date1.getDate() === date2.getDate();
-        }
-
-        // Formatear fecha para mostrar
-        function formatDate(date) {
-            const currentLanguage = document.querySelector('.lang-btn.active').id.split('-')[1];
-
-            if (currentLanguage === 'es') {
-                return date.toLocaleDateString('es-ES', {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric'
-                });
-            } else if (currentLanguage === 'en') {
-                return date.toLocaleDateString('en-US', {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric'
-                });
-            } else if (currentLanguage === 'de') {
-                return date.toLocaleDateString('de-DE', {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric'
-                });
-            } else if (currentLanguage === 'fr') {
-                return date.toLocaleDateString('fr-FR', {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric'
-                });
+        // Manejar clic en fecha
+        function handleDateClick(clickedDate) {
+            if (!tempStartDate || (tempStartDate && tempEndDate)) {
+                // Primera selección o reinicio
+                tempStartDate = clickedDate;
+                tempEndDate = null;
+            } else if (clickedDate < tempStartDate) {
+                // Si la fecha es anterior a la fecha de inicio
+                tempEndDate = tempStartDate;
+                tempStartDate = clickedDate;
+            } else {
+                // Fecha de fin
+                tempEndDate = clickedDate;
             }
+            renderCalendar();
         }
 
         // Inicializar el calendario
@@ -5678,35 +5630,22 @@ RAPPEL: Nous sommes le choix privilégié à Lanzarote avec plus de 10 ans d'exp
 
         // También agregar esta validación al formulario de reserva
         document.getElementById('reservationForm').addEventListener('submit', function (e) {
-            const startDate = selectedStartDate;
-
-            if (startDate) {
-                const now = new Date();
-
-                // Verificar si la fecha de inicio es hoy después de las 18:00
-                if (isSameDay(startDate, now) && isTodayAfter6PM()) {
-                    e.preventDefault();
-                    const currentLanguage = document.querySelector('.lang-btn.active').id.split('-')[1];
-                    const errorMessage = getTimeRestrictionMessage(currentLanguage);
-                    alert(errorMessage);
-                    return;
-                }
-
-                // Verificar si la fecha de inicio está en el pasado
+            if (selectedStartDate) {
                 const today = new Date();
                 today.setHours(0, 0, 0, 0);
-                if (startDate < today) {
+
+                if (selectedStartDate < today) {
                     e.preventDefault();
                     const currentLanguage = document.querySelector('.lang-btn.active').id.split('-')[1];
                     let errorMessage = '';
                     if (currentLanguage === 'es') {
-                        errorMessage = 'No se pueden seleccionar fechas anteriores al día actual.';
+                        errorMessage = 'No se pueden seleccionar fechas pasadas.';
                     } else if (currentLanguage === 'en') {
-                        errorMessage = 'Cannot select dates before today.';
+                        errorMessage = 'Cannot select past dates.';
                     } else if (currentLanguage === 'de') {
-                        errorMessage = 'Es können keine Daten vor dem heutigen Tag ausgewählt werden.';
+                        errorMessage = 'Vergangene Daten können nicht ausgewählt werden.';
                     } else if (currentLanguage === 'fr') {
-                        errorMessage = 'Impossible de sélectionner des dates antérieures à aujourd\'hui.';
+                        errorMessage = 'Impossible de sélectionner des dates passées.';
                     }
                     alert(errorMessage);
                     return;
