@@ -5494,7 +5494,7 @@ RAPPEL: Nous sommes le choix privilégié à Lanzarote avec plus de 10 ans d'exp
             renderCalendar();
         });
 
-        // Renderizar calendario CORREGIDO
+        // Renderizar calendario CORREGIDO - Permite seleccionar días del mes anterior que no han pasado
         function renderCalendar() {
             const currentLanguage = document.querySelector('.lang-btn.active').id.split('-')[1];
             const year = currentDate.getFullYear();
@@ -5525,12 +5525,40 @@ RAPPEL: Nous sommes le choix privilégié à Lanzarote avec plus de 10 ans d'exp
 
             // Días del mes anterior
             const prevMonthLastDay = new Date(year, month, 0).getDate();
+            const prevMonth = month === 0 ? 11 : month - 1;
+            const prevMonthYear = month === 0 ? year - 1 : year;
 
-            // Añadir días del mes anterior (siempre deshabilitados)
+            // Añadir días del mes anterior (NO siempre deshabilitados)
             for (let i = firstDayIndex - 1; i >= 0; i--) {
                 const day = document.createElement('div');
-                day.classList.add('calendar-day', 'disabled');
-                day.textContent = prevMonthLastDay - i;
+                const dayNumber = prevMonthLastDay - i;
+                const date = new Date(prevMonthYear, prevMonth, dayNumber);
+
+                day.classList.add('calendar-day');
+                day.textContent = dayNumber;
+                day.dataset.date = date.toISOString().split('T')[0];
+
+                // Solo deshabilitar si está en el pasado
+                if (date < today) {
+                    day.classList.add('disabled');
+                }
+
+                // Marcar selección
+                if (tempStartDate && isSameDay(date, tempStartDate)) {
+                    day.classList.add('selected');
+                }
+                if (tempEndDate && isSameDay(date, tempEndDate)) {
+                    day.classList.add('selected');
+                }
+                if (tempStartDate && tempEndDate && date >= tempStartDate && date <= tempEndDate) {
+                    day.classList.add('in-range');
+                }
+
+                // Event listener para días habilitados
+                if (!day.classList.contains('disabled')) {
+                    day.addEventListener('click', () => handleDateClick(date));
+                }
+
                 calendarGrid.appendChild(day);
             }
 
@@ -5572,7 +5600,7 @@ RAPPEL: Nous sommes le choix privilégié à Lanzarote avec plus de 10 ans d'exp
             const daysSoFar = firstDayIndex + lastDay.getDate();
             const nextMonthDays = totalCells - daysSoFar;
 
-            // Añadir días del próximo mes (NO deshabilitados automáticamente)
+            // Añadir días del próximo mes
             for (let i = 1; i <= nextMonthDays; i++) {
                 const day = document.createElement('div');
                 const nextMonth = month === 11 ? 0 : month + 1;
