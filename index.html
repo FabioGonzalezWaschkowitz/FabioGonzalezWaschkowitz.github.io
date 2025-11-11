@@ -4414,17 +4414,6 @@
             // Abrir WhatsApp en una nueva ventana/pestaña
             window.open(whatsappUrl, '_blank');
 
-            // Mostrar mensaje de confirmación
-            if (isSpanish) {
-                alert('¡Gracias por tu mensaje! Serás redirigido a WhatsApp para completar tu solicitud.');
-            } else if (isEnglish) {
-                alert('Thank you for your message! You will be redirected to WhatsApp to complete your request.');
-            } else if (isGerman) {
-                alert('Vielen Dank für Ihre Nachricht! Sie werden zu WhatsApp weitergeleitet, um Ihre Anfrage abzuschließen.');
-            } else if (isFrench) {
-                alert('Merci pour votre message! Vous serez redirigé vers WhatsApp pour compléter votre demande.');
-            }
-
             // Opcional: Limpiar el formulario después del envío
             form.reset();
         });
