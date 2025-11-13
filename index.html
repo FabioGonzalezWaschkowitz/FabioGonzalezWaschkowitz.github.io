@@ -1716,6 +1716,114 @@
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
+
+        /* About Slider Styles */
+        .about-slider-container {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 100%;
+            max-width: 560px;
+            max-height: 373px;
+            box-shadow: var(--shadow);
+        }
+
+        .about-slider {
+            position: relative;
+            width: 100%;
+            height: 373px;
+            overflow: hidden;
+        }
+
+        .about-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            transform: scale(1.05);
+        }
+
+        .about-slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .about-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Botones de navegación */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10;
+            color: var(--primary-green);
+            font-size: 1.2rem;
+        }
+
+        .slider-btn:hover {
+            background-color: var(--white);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .prev-btn {
+            left: 15px;
+        }
+
+        .next-btn {
+            right: 15px;
+        }
+
+        /* Indicadores de posición */
+        .slider-indicators {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .indicator.active {
+            background-color: var(--white);
+            transform: scale(1.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-slider-container {
+                order: -1;
+                margin-bottom: 30px;
+            }
+        }
     </style>
 </head>
 
@@ -1744,10 +1852,6 @@
                             style="display: none;">Vehicles</a><a href="#vehicles" data-lang="de"
                             style="display: none;">Fahrzeuge</a><a href="#vehicles" data-lang="fr"
                             style="display: none;">Véhicules</a></li>
-                    <li><a href="#testimonials" data-lang="es">Opiniones</a><a href="#testimonials" data-lang="en"
-                            style="display: none;">Reviews</a><a href="#testimonials" data-lang="de"
-                            style="display: none;">Bewertungen</a><a href="#testimonials" data-lang="fr"
-                            style="display: none;">Avis</a></li>
                     <li><a href="#location" data-lang="es">Ubicación</a><a href="#location" data-lang="en"
                             style="display: none;">Location</a><a href="#location" data-lang="de"
                             style="display: none;">Standort</a><a href="#location" data-lang="fr"
@@ -1756,6 +1860,10 @@
                             style="display: none;">Contact</a><a href="#contact" data-lang="de"
                             style="display: none;">Kontakt</a><a href="#contact" data-lang="fr"
                             style="display: none;">Contact</a></li>
+                    <li><a href="#testimonials" data-lang="es">Opiniones</a><a href="#testimonials" data-lang="en"
+                            style="display: none;">Reviews</a><a href="#testimonials" data-lang="de"
+                            style="display: none;">Bewertungen</a><a href="#testimonials" data-lang="fr"
+                            style="display: none;">Avis</a></li>
                 </ul>
             </nav>
 
@@ -1863,8 +1971,34 @@
                         </div>
                     </div>
                 </div>
-                <div class="about-image">
-                    <img src="/images/tienda.PNG" width="560" height="373" alt="Biosfera Rental Bike">
+                <div class="about-slider-container">
+                    <div class="about-slider">
+                        <div class="about-slide active">
+                            <img src="/images/tienda.PNG" width="560" height="373" alt="Biosfera Rental Bike - Tienda">
+                        </div>
+                        <div class="about-slide">
+                            <img src="/images/escaparate1.jpeg" width="560" height="373"
+                                alt="Biosfera Rental Bike - Bicicletas">
+                        </div>
+                        <div class="about-slide">
+                            <img src="/images/escaparate2.jpeg" width="560" height="373" alt="Biosfera Rental Bike - Equipo">
+                        </div>
+                    </div>
+
+                    <!-- Botones de navegación -->
+                    <button class="slider-btn prev-btn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="slider-btn next-btn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+
+                    <!-- Indicadores de posición -->
+                    <div class="slider-indicators">
+                        <span class="indicator active" data-index="0"></span>
+                        <span class="indicator" data-index="1"></span>
+                        <span class="indicator" data-index="2"></span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2065,7 +2199,7 @@
                 <!-- Scooter Eléctrico -->
                 <div class="vehicle-card">
                     <div id="scooter-image" class="vehicle-image">
-                        <img src="/images/scooter.jpg" alt="Scooter Eléctrico">
+                        <img src="/images/scooter.jpeg" alt="Scooter Eléctrico">
                     </div>
                     <div class="vehicle-content">
                         <h3 data-lang="es">Scooter Eléctrico</h3>
@@ -2148,7 +2282,7 @@
                 <!-- Tándem -->
                 <div class="vehicle-card">
                     <div class="vehicle-image">
-                        <img src="images/tandem.jpg" alt="Tándem">
+                        <img src="images/tandem.png" alt="Tándem">
                     </div>
                     <div class="vehicle-content">
                         <h3 data-lang="es">Tándem</h3>
@@ -2183,7 +2317,7 @@
                 <!-- Bicicleta Normal -->
                 <div class="vehicle-card">
                     <div class="vehicle-image">
-                        <img src="images/bicicleta-normal.png" alt="Bicicleta Normal">
+                        <img src="images/bicicleta-normal.jpg" alt="Bicicleta Normal">
                     </div>
                     <div class="vehicle-content">
                         <h3 data-lang="es">Bicicleta Normal</h3>
@@ -2226,7 +2360,7 @@
                 <!-- Bicicleta de Montaña -->
                 <div class="vehicle-card">
                     <div class="vehicle-image">
-                        <img src="images/bicicleta-de-montana.png" alt="Bicicleta de Montaña">
+                        <img src="images/bicicleta-montana.jpg" alt="Bicicleta de Montaña">
                     </div>
                     <div class="vehicle-content">
                         <h3 data-lang="es">Bicicleta de Montaña</h3>
@@ -3596,6 +3730,76 @@
                 mainNav.classList.remove('active');
                 mobileMenu.querySelector('i').classList.add('fa-bars');
                 mobileMenu.querySelector('i').classList.remove('fa-times');
+            });
+        });
+
+        // Slider para la sección About
+        document.addEventListener('DOMContentLoaded', function () {
+            const aboutSlider = document.querySelector('.about-slider');
+            const aboutSlides = document.querySelectorAll('.about-slide');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            const indicators = document.querySelectorAll('.indicator');
+
+            let currentSlide = 0;
+            const totalSlides = aboutSlides.length;
+
+            // Función para mostrar un slide específico
+            function showSlide(index) {
+                // Remover clase active de todos los slides
+                aboutSlides.forEach(slide => {
+                    slide.classList.remove('active');
+                });
+
+                // Remover clase active de todos los indicadores
+                indicators.forEach(indicator => {
+                    indicator.classList.remove('active');
+                });
+
+                // Añadir clase active al slide actual
+                aboutSlides[index].classList.add('active');
+
+                // Añadir clase active al indicador actual
+                indicators[index].classList.add('active');
+
+                currentSlide = index;
+            }
+
+            // Función para mostrar el siguiente slide
+            function nextSlide() {
+                let nextIndex = (currentSlide + 1) % totalSlides;
+                showSlide(nextIndex);
+            }
+
+            // Función para mostrar el slide anterior
+            function prevSlide() {
+                let prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
+                showSlide(prevIndex);
+            }
+
+            // Event listeners para los botones
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+
+            // Event listeners para los indicadores
+            indicators.forEach(indicator => {
+                indicator.addEventListener('click', function () {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    showSlide(index);
+                });
+            });
+
+            // Auto-slide cada 5 segundos
+            let autoSlideInterval = setInterval(nextSlide, 5000);
+
+            // Pausar auto-slide cuando el ratón está sobre el slider
+            aboutSlider.addEventListener('mouseenter', () => {
+                clearInterval(autoSlideInterval);
+            });
+
+            // Reanudar auto-slide cuando el ratón sale del slider
+            aboutSlider.addEventListener('mouseleave', () => {
+                autoSlideInterval = setInterval(nextSlide, 5000);
             });
         });
 
