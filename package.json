@@ -1,0 +1,9 @@
+{
+    "name": "biosfera-rental-bike",
+    "version": "1.0.0",
+    "description": "",
+    "dependencies": {
+        "axios": "^1.6.0",
+        "dotenv": "^16.0.0"
+    }
+}
