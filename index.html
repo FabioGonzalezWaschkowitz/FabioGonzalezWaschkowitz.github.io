@@ -5414,8 +5414,14 @@
             const start = new Date(startDate);
             const end = new Date(endDate);
 
+            // Normalizar las fechas para que solo consideren el día (sin horas, minutos, etc.)
+            start.setHours(0, 0, 0, 0);
+            end.setHours(0, 0, 0, 0);
+
             const oneDay = 24 * 60 * 60 * 1000; // horas * minutos * segundos * milisegundos
-            const diffDays = Math.round(Math.abs((end - start) / oneDay)) + 1;
+            
+            // Calcular la diferencia en días SIN sumar 1 día extra
+            const diffDays = Math.round(Math.abs((end - start) / oneDay));
             return diffDays;
         }
 
