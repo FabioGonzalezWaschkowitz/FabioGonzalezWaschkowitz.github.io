@@ -5344,18 +5344,18 @@
                     8: 8,
                     30: 7
                 },
-                weekly: 50
+                weekly: 70
             },
             'electric-bike': { // Bicicleta Eléctrica
                 type: 'daily',
                 rates: {
-                    1: 16,
-                    2: 14,
-                    4: 13,
-                    8: 12,
-                    30: 10
+                    1: 30,
+                    2: 25,
+                    4: 20,
+                    8: 18,
+                    30: 16
                 },
-                weekly: 80
+                weekly: 110
             },
             'tandem-bike': { // Bicicleta Tándem
                 type: 'daily',
@@ -5366,7 +5366,7 @@
                     8: 15,
                     30: 15
                 },
-                weekly: 70
+                weekly: 105
             },
             'electric-scooter': { // Scooter Eléctrico
                 type: 'hourly',
@@ -5378,13 +5378,13 @@
             'mobility-scooter': { // Scooter de Movilidad
                 type: 'daily',
                 rates: {
-                    1: 10,
-                    2: 8,
-                    4: 7,
-                    8: 6,
-                    30: 5
+                    1: 20,
+                    3: 16,
+                    14: 15,
+                    21: 11.90,
+                    30: 10
                 },
-                weekly: 50
+                weekly: 110
             },
             'cart': { // Carrito
                 type: 'hourly',
@@ -5457,17 +5457,19 @@
                 console.log("Horas ingresadas:", hours);
 
                 // Para vehículos por horas, la primera hora tiene un precio y las adicionales otro
+                let totalPrice;
                 if (hours === 1) {
-                    return vehicle.rates[1]; // Solo la primera hora
+                    totalPrice = vehicle.rates[1]; // Solo la primera hora
                 } else {
                     // Primera hora + (horas adicionales * precio por hora adicional)
                     const additionalHours = hours - 1;
-                    return vehicle.rates[1] + (additionalHours * vehicle.rates[2]);
+                    totalPrice = vehicle.rates[1] + (additionalHours * vehicle.rates[2]);
                 }
+                return Math.round(totalPrice); // Redondear aquí
             }
 
             if (vehicle.type === 'fixed') {
-                return vehicle.price;
+                return Math.round(vehicle.price); // Redondear aquí
             }
 
             if (vehicle.type === 'daily') {
@@ -5475,7 +5477,7 @@
 
                 // Verificar tarifas especiales primero
                 if (days === 7 && vehicle.weekly) {
-                    return vehicle.weekly;
+                    return Math.round(vehicle.weekly); // Redondear aquí
                 }
 
                 // Encontrar la tarifa diaria adecuada según los días
@@ -5493,7 +5495,8 @@
                 }
 
                 console.log("Tarifa aplicable:", applicableRate, "para", days, "días");
-                return applicableRate * days;
+                const totalPrice = applicableRate * days;
+                return Math.round(totalPrice); // Redondear aquí
             }
 
             return 0;
@@ -5523,7 +5526,7 @@
                     // Para vehículos por horas
                     const hours = parseInt(hoursInput.value) || 1;
                     totalPrice = calculatePrice(selectedService, days);
-                    pricePerUnit = hours > 0 ? (totalPrice / hours).toFixed(2) : vehicle.rates[1];
+                    pricePerUnit = hours > 0 ? Math.round(totalPrice / hours) : Math.round(vehicle.rates[1]); // Redondear aquí
 
                     // Actualizar los elementos del DOM para vehículos por horas
                     document.getElementById('rentalDays').textContent = hours;
@@ -5541,7 +5544,7 @@
                     // Para vehículos por días
                     days = calculateDays(startDate, endDate);
                     totalPrice = calculatePrice(selectedService, days);
-                    pricePerUnit = days > 0 ? (totalPrice / days).toFixed(2) : 0;
+                    pricePerUnit = days > 0 ? Math.round(totalPrice / days) : 0; // Redondear aquí
 
                     // Actualizar los elementos del DOM para vehículos por días
                     document.getElementById('rentalDays').textContent = days;
@@ -5559,7 +5562,7 @@
 
                 console.log("Resultados - Total:", totalPrice, "Por unidad:", pricePerUnit);
 
-                // Actualizar el precio total
+                // Actualizar el precio total (ya redondeado en calculatePrice)
                 document.getElementById('totalPrice').textContent = `${totalPrice}€`;
             } else {
                 priceSection.style.display = 'none';
