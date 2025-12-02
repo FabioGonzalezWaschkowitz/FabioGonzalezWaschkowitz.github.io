@@ -5380,11 +5380,15 @@
                 rates: {
                     1: 20,
                     3: 16,
+                    7: 15.71, // Para cálculo interno (110/7)
                     14: 15,
                     21: 11.90,
                     30: 10
                 },
-                weekly: 110
+                weekly: 110,
+                biweekly: 210,  // 2 semanas
+                triweekly: 250, // 3 semanas
+                monthly: 300    // 1 mes
             },
             'cart': { // Carrito
                 type: 'hourly',
@@ -5465,19 +5469,23 @@
                     const additionalHours = hours - 1;
                     totalPrice = vehicle.rates[1] + (additionalHours * vehicle.rates[2]);
                 }
-                return Math.round(totalPrice); // Redondear aquí
+                return Math.round(totalPrice);
             }
 
             if (vehicle.type === 'fixed') {
-                return Math.round(vehicle.price); // Redondear aquí
+                return Math.round(vehicle.price);
             }
 
             if (vehicle.type === 'daily') {
-                // Para alquileres diarios
+                // CASO ESPECIAL: Mobility Scooter
+                if (vehicleType === 'mobility-scooter') {
+                    return calculateMobilityScooterPrice(days);
+                }
 
+                // Para los otros vehículos (lógica original)
                 // Verificar tarifas especiales primero
                 if (days === 7 && vehicle.weekly) {
-                    return Math.round(vehicle.weekly); // Redondear aquí
+                    return Math.round(vehicle.weekly);
                 }
 
                 // Encontrar la tarifa diaria adecuada según los días
@@ -5496,11 +5504,97 @@
 
                 console.log("Tarifa aplicable:", applicableRate, "para", days, "días");
                 const totalPrice = applicableRate * days;
-                return Math.round(totalPrice); // Redondear aquí
+                return Math.round(totalPrice);
             }
 
             return 0;
         }
+
+
+
+        // Función especial para calcular precio del Mobility Scooter
+        function calculateMobilityScooterPrice(days) {
+            console.log("Calculando precio especial para Mobility Scooter, días:", days);
+            
+            // Precios según tu especificación
+            const DAILY_1_DAY = 20;        // 1 día
+            const DAILY_3_PLUS = 16;       // 3+ días (por día)
+            const WEEKLY_PRICE = 110;      // 1 semana (7 días)
+            const BIWEEKLY_PRICE = 210;    // 2 semanas (14 días)
+            const TRIWEEKLY_PRICE = 250;   // 3 semanas (21 días)
+            const MONTHLY_PRICE = 300;     // 1 mes (30 días)
+            const EXTRA_DAY_PRICE = 15;    // Precio por día adicional después de períodos completos
+            
+            // Si es exactamente 7 días
+            if (days === 7) {
+                return WEEKLY_PRICE;
+            }
+            
+            // Si es exactamente 14 días
+            if (days === 14) {
+                return BIWEEKLY_PRICE;
+            }
+            
+            // Si es exactamente 21 días
+            if (days === 21) {
+                return TRIWEEKLY_PRICE;
+            }
+            
+            // Si es exactamente 30 días
+            if (days === 30) {
+                return MONTHLY_PRICE;
+            }
+            
+            // Para períodos más largos que las tarifas fijas
+            if (days > 30) {
+                // Calcular meses completos y días adicionales
+                const completeMonths = Math.floor(days / 30);
+                const extraDays = days % 30;
+                
+                let totalPrice = completeMonths * MONTHLY_PRICE;
+                
+                if (extraDays > 0) {
+                    // Para días adicionales después de meses completos: 15€ por día
+                    totalPrice += (extraDays * EXTRA_DAY_PRICE);
+                }
+                
+                return totalPrice;
+            }
+            
+            // Para períodos entre semanas y meses
+            if (days > 21 && days < 30) {
+                // 3 semanas + días adicionales a 15€
+                const extraDays = days - 21;
+                return TRIWEEKLY_PRICE + (extraDays * EXTRA_DAY_PRICE);
+            }
+            
+            if (days > 14 && days < 21) {
+                // 2 semanas + días adicionales a 15€
+                const extraDays = days - 14;
+                return BIWEEKLY_PRICE + (extraDays * EXTRA_DAY_PRICE);
+            }
+            
+            if (days > 7 && days < 14) {
+                // 1 semana + días adicionales a 15€
+                const extraDays = days - 7;
+                return WEEKLY_PRICE + (extraDays * EXTRA_DAY_PRICE);
+            }
+            
+            // Para períodos cortos (menos de 7 días)
+            if (days >= 3) {
+                // 3 días o más: 16€ por día
+                return days * DAILY_3_PLUS;
+            }
+            
+            if (days === 2) {
+                // 2 días
+                return days * DAILY_1_DAY;
+            }
+            
+            // 1 día
+            return DAILY_1_DAY;
+        }
+
 
         // Función para actualizar el cálculo de precio
         function updatePriceCalculation() {
